@@ -1,1 +1,16 @@
-/Users/joe/Projects/scripts/go
+go() {
+  requested=$1
+  for project in $(find ~/Projects -type d -mindepth 2 -maxdepth 2)
+  do
+    if [[ $requested = $(basename $project) ]]
+    then
+      goto_project $project
+      return
+    fi
+  done
+}
+
+goto_project() {
+  echo "cd $1/source"
+  builtin cd $1/source
+}
