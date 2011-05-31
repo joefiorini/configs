@@ -1,0 +1,15 @@
+[user]
+  name = Joe Fiorini
+  email = joe@joefiorini.com
+[github]
+  token = 22b2f50b9ad4f484fd37c6f5eb51e695
+  user = joefiorini
+[alias]
+  st  = status
+  ci  = commit -v
+  br  = branch
+  co  = checkout
+  df  = diff
+  lg  = log -p
+  who = shortlog -s --
+  rb  = rebase
