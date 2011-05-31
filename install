@@ -1,0 +1,4 @@
+#!/bin/bash
+
+lndir -silent $HOME/Projects/personal/configs/source/ $HOME
+rm $HOME/install  # Don't want install script hanging around
