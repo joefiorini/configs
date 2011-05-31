@@ -1,0 +1,169 @@
+class PluginPath
+  attr_reader :path
+
+  def initialize(path)
+    @path = path
+  end
+
+
+  def storage
+    if github?
+      :github
+    elsif filesystem?
+      :filesystem
+    else
+      :vimdotorg
+    end
+  end
+
+  def github?
+    !(path =~ %r{^https://github.com}).nil?
+  end
+
+
+  def filesystem?
+    File.file?(path)
+  end
+
+
+  def vimdotorg?
+    false
+  end
+
+
+end
+
+class Plugin
+  attr_reader :plugin_path
+
+  def initialize(plugin_path)
+    raise(ArgumentError, "Please use an instance of PluginPath") unless plugin_path.is_a?(PluginPath)
+    @plugin_path = plugin_path
+  end
+
+  def name
+    File.basename(plugin_path.path).gsub(File.extname(plugin_path.path), '')
+  end
+
+  def install!(path=nil)
+    self.send(:"install_#{plugin_path.storage}!", path)
+  end
+
+  def install_github!(install_path)
+    install_path = install_path && File.join(install_path, name)
+    command = "git clone #{plugin_path.path}"
+    command << " #{install_path}" if install_path
+    Command.execute!(command)
+  end
+
+  class Command
+
+    def self.execute!(command)
+      puts "Executing command: #{command.inspect}"
+      exec(command)
+    end
+  end
+
+
+end
+
+require 'rake'
+
+namespace :plugin do
+  task :install, :path do |t, args|
+    plugin_path = PluginPath.new(args[:path])
+    Plugin.new(plugin_path).install!("~/.vim/bundle")
+  end
+end
+
+
+if respond_to?(:describe)
+  require 'tmpdir'
+
+  describe PluginPath do
+
+    subject { PluginPath.new("/path/to/plugin") }
+
+    it "is created with a string path" do
+      lambda { subject }.should_not raise_error
+    end
+
+    it "gives access to the path" do
+      subject.path.should == "/path/to/plugin"
+    end
+
+
+    context "to a plugin on Github" do
+
+      subject { PluginPath.new("https://github.com/tpope/vim-awesomemofo.git") }
+
+      its(:github?) { should be_true }
+      its(:filesystem?) { should be_false }
+      its(:vimdotorg?) { should be_false }
+      its(:storage) { should == :github }
+
+    end
+
+
+    context "to a plugin on the filesystem" do
+
+      context "that only contains a vimscript" do
+
+        before do
+          @plugin_path = "#{Dir.tmpdir}/plugin.vim"
+          FileUtils.touch([@plugin_path])
+        end
+
+        after do
+          FileUtils.rm_f(Dir[@plugin_path])
+        end
+
+        subject { PluginPath.new(@plugin_path) }
+
+        its(:github?) { should be_false }
+        its(:filesystem?) { should be_true }
+        its(:vimdotorg?) { should be_false }
+        its(:storage) { should == :filesystem }
+
+      end
+    end
+
+  end
+
+
+  describe Plugin do
+
+    subject { Plugin.new(PluginPath.new("https://github.com/tpope/vim-awesomemofo.git")) }
+
+    context "creation" do
+
+      it "takes a PluginPath object" do
+        lambda { subject }.should_not raise_error
+      end
+
+      it "raises error when passed anything else" do
+        lambda { Plugin.new("invalid") }.should raise_error(ArgumentError)
+      end
+
+    end
+
+    context "installation" do
+
+      context "from Github" do
+
+        its(:name) { should == "vim-awesomemofo" }
+
+        it "downloads the code from Github" do
+          Plugin::Command.should_receive(:execute!).with("git clone https://github.com/tpope/vim-awesomemofo.git")
+          subject.install!
+        end
+
+        it "takes an installation path" do
+          Plugin::Command.should_receive(:execute!).with("git clone https://github.com/tpope/vim-awesomemofo.git ~/.vim/bundle/vim-awesomemofo")
+          subject.install!("~/.vim/bundle")
+        end
+
+      end
+    end
+  end
+end

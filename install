@@ -2,3 +2,14 @@
 
 lndir -silent $HOME/Projects/personal/configs/source/ $HOME
 rm $HOME/install  # Don't want install script hanging around
+
+homedir_files=".vim/.vimrc .zsh/.zshrc .zsh/.zshenv"
+
+for extra in $homedir_files; do
+  name=$(basename $extra)
+  orig=$HOME/Projects/personal/configs/source/$extra
+
+  if [[ ! -h $HOME/$name ]]; then
+    ln -s $orig $HOME/$name
+  fi
+done
