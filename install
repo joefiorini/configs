@@ -2,6 +2,7 @@
 
 lndir -silent $HOME/Projects/personal/configs/source/ $HOME
 rm $HOME/install  # Don't want install script hanging around
+rm -rf $HOME/.git     # Don't need the git repo in $HOME
 
 homedir_files=".vim/.vimrc .zsh/.zshrc .zsh/.zshenv"
 
