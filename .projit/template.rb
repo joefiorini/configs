@@ -17,3 +17,6 @@ EOF
   end
 end
 
+create_link_in_dropbox project_base
+
+clone_from_github_into 'source'
