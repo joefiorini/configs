@@ -1,6 +1,6 @@
 go() {
   requested=$1
-  for project in $(find ~/Projects -type d -mindepth 2 -maxdepth 2)
+  for project in $(go_projects_list)
   do
     if [[ $requested = $(basename $project) ]]
     then
@@ -10,7 +10,13 @@ go() {
   done
 }
 
+go_projects_list() {
+  find ~/Projects -type d -d 2
+}
+
 goto_project() {
   echo "cd $1/source"
   builtin cd $1/source
 }
+
+compctl -k "($(go_projects_list | xargs basename))" go
