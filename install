@@ -1,6 +1,15 @@
 #!/bin/bash
 
-lndir -silent $HOME/Projects/personal/configs/source/ $HOME
+configs_dir=$(dirname $0)
+if [ $(echo $0 | cut -c1) = "/" ]; then
+	configs_dir=$(dirname $0)
+else
+  configs_dir=$(pwd)/$(echo $0 | sed -e s/\\.\\/install//)
+fi
+
+echo "Linking $configs_dir to $HOME"
+lndir -silent $configs_dir $HOME
+
 rm $HOME/install  # Don't want install script hanging around
 rm -rf $HOME/.git     # Don't need the git repo in $HOME
 
@@ -8,7 +17,7 @@ homedir_files=".vim/.vimrc .zsh/.zshrc .zsh/.zshenv"
 
 for extra in $homedir_files; do
   name=$(basename $extra)
-  orig=$HOME/Projects/personal/configs/source/$extra
+  orig=$configs_dir/$extra
 
   if [[ ! -h $HOME/$name ]]; then
     ln -s $orig $HOME/$name
