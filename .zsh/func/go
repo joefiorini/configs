@@ -15,8 +15,12 @@ go_projects_list() {
 }
 
 goto_project() {
-  echo "cd $1/source"
-  builtin cd "$1/source"
+  local godir
+  if [ -d "$1/source" ]; then
+    godir="$1/source"
+  else
+    godir=$1
+  fi
+  echo "cd $godir"
+  builtin cd $godir
 }
-
-compctl -k "($(go_projects_list | xargs basename))" go

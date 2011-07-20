@@ -13,3 +13,5 @@
   lg  = log -p
   who = shortlog -s --
   rb  = rebase
+[diff]
+	tool = vimdiff
