@@ -102,6 +102,9 @@ mdown() {
 zle -N backward-kill-partial-word
 bindkey '^Xw' backward-kill-partial-word
 
+command_exists(){
+  command -v "$1" &>/dev/null ;
+}
 
 ###### Prompt
 
@@ -109,10 +112,10 @@ PS1="%n@%m:%~%# "
 source "$HOME/.zsh/func/prompt_jaf_setup"
 
 ###### rip
-eval `rip-config`
+command_exists rip && eval `rip-config`
 
 ###### hub
-eval `hub alias -s zsh`
+command_exists hub && eval `hub alias -s zsh`
 
 ###### rvm
 #
