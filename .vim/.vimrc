@@ -6,6 +6,7 @@ set nocompatible              "don't need to keep compatibility with Vi
 
 "Set colorscheme with options
 let g:solarized_termcolors=256
+let g:solarized_termtrans=1
 colorscheme solarized         "use a colorscheme that's cli friendly
 set background=dark           "make vim use colors that look good on a dark background
 

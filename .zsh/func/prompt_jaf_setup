@@ -24,7 +24,8 @@ revstring() {
 
 function prompt_jaf_scm_info() {
     if zgit_inworktree; then
-      echo "($(prompt_wunjo_scm_branch)$(prompt_jaf_active_jobs))"
+      str="$(prompt_wunjo_scm_branch)$(prompt_jaf_active_jobs)"
+      echo "($str)"
     fi
 }
 
@@ -38,14 +39,14 @@ function prompt_jaf_active_jobs() {
   [ "$num_jobs" -eq 0 ] && return
 
   if [ "$num_jobs" -gt 8 ]; then
-    COLOR="$pc[active_jobs_high]"
+    COLOR="%{$pc[active_jobs_high]%}"
   elif [ "$num_jobs" -gt 3 ]; then
-    COLOR="$pc[active_jobs_medium]"
+    COLOR="%{$pc[active_jobs_medium]%}"
   else
-    COLOR="$pc[active_jobs_low]"
+    COLOR="%{$pc[active_jobs_low]%}"
   fi
 
-  local ACTIVE_JOBS="${COLOR}$num_jobs$pc[reset]"
+  local ACTIVE_JOBS="${COLOR}$num_jobs%{$pc[reset]%}"
   echo "|$ACTIVE_JOBS"
 }
 
@@ -55,7 +56,7 @@ function prompt_jaf_rvm_info() {
   pc=(${(kv)wunjo_prompt_colors})
   ruby_version=$($HOME/bin/rvm-prompt g u 2>/dev/null) || return
   if [ ! $ruby_version = '' ]; then
-    echo "$pc[rvm_info] $ruby_version $pc[reset]"
+    echo "%{$pc[rvm_info]%} $ruby_version %{$pc[reset]%}"
   fi
 }
 
@@ -94,22 +95,6 @@ prompt_jaf_setup() {
     solarized[${scn}]=${colorcode[$cn]}
   done
 
-  typeset -A attcode
-  attcode[none]=00
-  attcode[bold]=01
-  attcode[faint]=02
-  attcode[standout]=03
-  attcode[underline]=04
-  attcode[blink]=05
-  attcode[reverse]=07
-  attcode[conceal]=08
-  attcode[normal]=22
-  attcode[no-standout]=23
-  attcode[no-underline]=24
-  attcode[no-blink]=25
-  attcode[no-reverse]=27
-  attcode[no-conceal]=28
-
   local -A pc
   pc[default]='default'
   pc[date]='cyan'
@@ -144,11 +129,8 @@ prompt_jaf_setup() {
 
   PROMPT="\$(prompt_jaf_rvm_info)"
   PROMPT+="\$(prompt_jaf_scm_info)"
-  PROMPT+=" $pc[#]%#$pc[reset] "
+  PROMPT+=" %{$pc[#]%}%#%{$pc[reset]%} "
 
-  cat -v <(echo ${PROMPT})
-
-  export PROMPT
   precmd_functions+='prompt_wunjo_precmd'
 }
 
@@ -169,11 +151,11 @@ prompt_wunjo_scm_branch() {
   local -A pc
   pc=(${(kv)wunjo_prompt_colors})
 
-  echo -n "$pc[punc]:$pc[scm_branch]$(zgit_head)"
+  echo -n "%{$pc[punc]%}:%{$pc[scm_branch]%}$(zgit_head)"
 
   if zgit_inworktree; then
     if ! zgit_isindexclean; then
-      echo -n "$pc[scm_status_staged]+"
+      echo -n "%{$pc[scm_status_staged]+%}"
     fi
 
     local -a dirty
@@ -190,11 +172,11 @@ prompt_wunjo_scm_branch() {
     fi
 
     if [ $#dirty -gt 0 ]; then
-      echo -n "$pc[scm_status_dirty]${(j::)dirty}"
+      echo -n "%{$pc[scm_status_dirty]%}${(j::)dirty}"
     fi
   fi
 
-  echo $pc[reset]
+  echo "%{$pc[reset]%}"
 }
 
 prompt_jaf_setup "$@"
