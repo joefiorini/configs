@@ -28,6 +28,7 @@ alias gf='git fetch'
 alias blog='cd ~/Sites/blog.densitypop.com'
 alias cwip='time cucumber -p wip'
 alias cuke='time cucumber -p default'
+alias cpkey="cat ~/.ssh/id_rsa.pub | pbcopy"
 
 ###### Speed up tab completion
 zstyle ':completion:*' accept-exact '*(N)'
@@ -105,8 +106,13 @@ bindkey '^Xw' backward-kill-partial-word
 ###### Prompt
 
 PS1="%n@%m:%~%# "
-promptinit
-prompt jaf
+source "$HOME/.zsh/func/prompt_jaf_setup"
+
+###### rip
+eval `rip-config`
+
+###### hub
+eval `hub alias -s zsh`
 
 ###### rvm
 #
