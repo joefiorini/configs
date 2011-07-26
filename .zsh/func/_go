@@ -1,0 +1,4 @@
+#compdef go
+#autoload
+
+compadd `go_projects_list | xargs basename`
