@@ -13,5 +13,12 @@
   lg  = log -p
   who = shortlog -s --
   rb  = rebase
+  unstage = reset HEAD $1
+  put = push origin HEAD
 [diff]
 	tool = vimdiff
+[color]
+  ui = auto
+[git-pair]
+	authors = Veezus Kreist <almighty@veez.us>
+	authors = Joe Fiorini <joe@joefiorini.com>
