@@ -1,0 +1,16 @@
+#!/bin/bash
+message="wip"
+remote=$(git config --get save.remote)
+branch=$(git config --get save.branch)
+
+[ "$remote" ] || echo "Please specify a remote in .git/config under [save]"
+[ "$branch" ] || echo "Please specify a branch in .git/config under [save]"
+
+[[ -z "$remote" || -z "$branch" ]] && exit 1
+
+[ $1 ] && message=" $message ($1)"
+git add -A .
+git ci -m $message
+git push $remote +head:$branch
+git reset head^
+

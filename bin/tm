@@ -1,0 +1,22 @@
+#!/bin/zsh
+# t "Buy bacon #errands"
+# t
+# > Buy bacon #errands
+# > Pick up shirts #errands
+# > Get flowers for wife #errands
+# ^d
+#
+
+add_task_address=49a127c44@nirvanahq.com
+task=$*
+
+if [ $task ]; then
+  # Send email with task as subject
+  echo "" | mail -s $task $add_task_address
+  if [ $? ]; then
+    echo "Successfully added task \"$task\""
+  fi
+else
+  # Send email with list of tasks in body. You will have to enter each one manually; press Control+D to send.
+  mail -s "Inbox" $import_tasks_address
+fi
