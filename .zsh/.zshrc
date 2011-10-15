@@ -119,7 +119,7 @@ source "$HOME/.zsh/func/prompt_jaf_setup"
 command_exists hub && eval `hub alias -s zsh`
 
 ###### rbenv
-eval "$(rbenv init -)"
+command_exists rbenv && eval "$(rbenv init -)"
 
 ###### rvm
 #
