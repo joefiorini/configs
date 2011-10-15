@@ -115,9 +115,6 @@ print_table () {
 PS1="%n@%m:%~%# "
 source "$HOME/.zsh/func/prompt_jaf_setup"
 
-###### rip
-command_exists rip && eval `rip-config`
-
 ###### hub
 command_exists hub && eval `hub alias -s zsh`
 
