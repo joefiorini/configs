@@ -110,6 +110,24 @@ print_table () {
   sed -n "/\"$1\".* do |t|$/,/end/ s/.*/&/ p" db/schema.rb
 }
 
+gtd() {
+  if [[ -n "$@" ]]; then
+    task="- $@"
+    [[ $DEBUG = "1" ]] && echo "*$task*"
+    echo "Writing new task to $TASKS_FILE..."
+    backup="$TASKS_FILE.`date +%s`.backup"
+    cat $TASKS_FILE > $backup
+    echo "$task" | cat - $TASKS_FILE | sponge $TASKS_FILE
+    changed=$(diff -w --unchanged-line-format= $TASKS_FILE $backup)
+    if [[ "$changed" != "$task" ]]; then
+      echo "Parity check failed, your tasks file is backed up at $backup. Please investigate and restore if necessary."
+      echo "$changed"
+    fi
+  else
+    e ~/Dropbox/clocktower/taskpaper.taskpaper
+  fi
+}
+
 ###### Prompt
 
 PS1="%n@%m:%~%# "

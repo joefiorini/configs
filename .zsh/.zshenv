@@ -7,3 +7,4 @@ export LSCOLORS="Gxfxcxdxbxegedabagacad"
 export WORDCHARS="${WORDCHARS:s#/#}"
 export CLICOLOR=1
 
+export TASKS_FILE=~/Dropbox/clocktower/taskpaper.taskpaper
