@@ -121,9 +121,9 @@ command_exists rip && eval `rip-config`
 ###### hub
 command_exists hub && eval `hub alias -s zsh`
 
+###### rbenv
+eval "$(rbenv init -)"
+
 ###### rvm
 #
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
-print_table () {
-	sed -n "/\"$1\".* do |t|$/,/end/ s/.*/&/ p" db/schema.rb
-}
+#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
