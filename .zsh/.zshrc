@@ -106,6 +106,10 @@ command_exists(){
   command -v "$1" &>/dev/null ;
 }
 
+print_table () {
+  sed -n "/\"$1\".* do |t|$/,/end/ s/.*/&/ p" db/schema.rb
+}
+
 ###### Prompt
 
 PS1="%n@%m:%~%# "
