@@ -54,7 +54,9 @@ function prompt_jaf_rvm_info() {
   local ruby_version
   local -A pc
   pc=(${(kv)wunjo_prompt_colors})
-  ruby_version=$($HOME/bin/rvm-prompt g u 2>/dev/null) || return
+  #ruby_version=$($HOME/bin/rvm-prompt g u 2>/dev/null) || return
+  ruby_version=$(rbenv version-name)
+  [ -f $(pwd)/.rbenv-gemsets ] && ruby_version="$ruby_version@$(rbenv gemset active)"
   if [ ! $ruby_version = '' ]; then
     echo "%{$pc[rvm_info]%} $ruby_version %{$pc[reset]%}"
   fi
