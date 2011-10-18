@@ -1,0 +1,155 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html  xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>TmCodeBrowser Manual</title>
+<link rel="stylesheet" type="text/css" href="index.css"></link>
+<script type="text/javascript" src="functions.js"></script>
+</head>
+<body>
+<div class="body">
+<h1>TmCodeBrowser Manual</h1>
+<p>Version: 1.11</p>
+<h2><a name="Introduction" class="name">Introduction</a></h2>
+<img src="ScreenShot.png" width="162" height="289" alt="ScreenShot" />
+<p>TmCodeBrowser is a <span class="i">TextMate plugin</span> designed to help navigating source files. It will parse <a href="http://ctags.sourceforge.net/languages.html">any language known</a> to the underlying <a href="http://ctags.sourceforge.net/">Exuberant Ctags</a> program (enhanced by a small script to also support Objective-C). It will present classes, subroutines etc. in a TreeView. Clicking on any entry will jump to the corresponding location in the source code.</p>
+<p>TmCodeBrowser requires OS X 10.3.9 or later and TextMate v1.1b17 REVISION 687 or later.</p>
+<div class="notemarker">&rArr;</div><div class="note">Note: When you edit your source code, it will become <span class="i">out of sync</span> with TmCodeBrowser as line numbers shift.</div><h2><a name="Sort" class="name">Sort</a></h2>
+<p>If the <span class="i">Sort</span> checkbox at the top of the TmCodeBrowser panel is checked, all entries will be sorted within their categories. When unchecked, entries will be presented in the order they appear in the source file. The sort setting is remembered for each TextMate language setting.</p>
+<h2><a name="Configuration" class="name">Configuration</a></h2>
+<p>You can bring up the configuration panel by clicking on the small <span class="i">Config</span> button at the top of the TmCodeBrowser panel. This dialog then appears:</p>
+<img src="ConfigurationPanel.png" width="407" height="401" alt="ConfigurationPanel" />
+<p>You can click on the TmCodeBrowser icon to get to the TmCodeBrowser homepage. Clicking on the <span class="i">Manual</span> button will bring up this manual.</p>
+<p>The panel can be set to operate in three different modes:</p>
+<h3><a name="FloatingPanel" class="name">Floating Panel</a></h3>
+<p>In this mode the TmCodeBrowser panel will always be on top of all other TextMate windows. This is handy when you like to always have the panel visible.</p>
+<h3><a name="NormalPanel" class="name">Normal Panel</a></h3>
+<p>When this option is selected the TmCodeBrowser panel will behave like standard panels and can become obscured by other windows. To bring it to the front click on it, or use the Menu entry <span class="i">Window/Show CodeBrowser</span> or it's keyboard shortcut ⌃⌘T (in case your browser does not detect this as a UTF-8 document, the previous is supposed to read Ctrl-Cmd-T).</p>
+<h3><a name="Hideafterselection" class="name">Hide after selection</a></h3>
+<p>In this mode the TmCodeBrowser panel will hide after a selection was made. In this mode it will behave much like TextMate's <span class="i">Go to file...</span> panel.</p>
+<h3><a name="Visibleatlaunch" class="name">Visible at launch</a></h3>
+<p>If this option is selected, the TmCodeBrowser panel will automatically appear each time TextMate is launched.</p>
+<h2><a name="Keyboardnavigation" class="name">Keyboard navigation</a></h2>
+<p>TmCodeBrowser tries to be friendly to users who prefer to use the keyboard as much as possible. To make use of this set the Panel mode to your liking (probably <a href="#Hideafterselection" class="local">Hide after selection</a>). Bring the TmCodeBrowser panel up by pressing ⌃⌘T (in case your browser does not detect this as a UTF-8 document, the previous is supposed to read Ctrl-Cmd-T). Enter some characters to select the desired item, the search will behave similar to TextMate's <span class="i">Go to file...</span>. use the <span class="i">Up</span> and <span class="i">Down</span> arrow keys to move the selection, and press the <span class="i">Return</span> or <span class="i">Enter</span> key to make your selection.</p>
+<h2><a name="Customization" class="name">Customization</a></h2>
+<p>TmCodeBrowser uses the <a href="http://ctags.sourceforge.net/">Exuberant Ctags</a> program to parse all files. Exuberant Ctags can be customized and even enhanced to parse other languages by adding some lines to the <span class="i">ctags</span> configuration file. To not conflict with other <span class="i">ctags</span> uses, TmCodeBrowser uses the file <a href="txmt://open?url=file://.ctags.tmcodebrowser">~/.ctags.tmcodebrowser</a> (clicking on <a href="txmt://open?url=file://.ctags.tmcodebrowser">this link</a> will open the file in TextMate). If that does not exist, TmCodeBrowser will use an internal file with <a href="default_ctags.txt">this default content</a>.</p>
+<h3><a name="Supportforadditionallanguages" class="name">Support for additional languages</a></h3>
+<p>The sources for the <a href="http://ctags.sourceforge.net/">Exuberant Ctags</a> are public, and allow anyone to add support for additional languages. However it is also possible to add rudimentary language support by simply adding a few lines to the configuration file.</p>
+<p>Here is a brief example for latex, courtesy of Jeroen van der Ham:</p>
+
+<pre>
+	--langdef=latex
+	--langmap=latex:.tex
+	--regex-latex=/\\label\{*([^} \t]+)[ \t]*\}/\1/l,label/
+	--regex-latex=/^\\(sub)*section{([^}]*)}/\2/s,section/
+</pre>
+<p>The example above (courtesy of Jeroen van der Ham) shows how to add support for languages not supported by the <span class="i">Exuberant Ctags</span>: The <span class="i">--langdef</span> line gives the language a name, the <span class="i">--langmap</span> line tells <span class="i">ctags</span> which extensions files of this language have, and the <span class="i">--regex-latex</span> lines define some regular expressions that <span class="i">ctags</span> uses to parse language elements. See the <a href="http://ctags.sourceforge.net/ctags.html">Exuberant Ctags manual page</a> for details.</p>
+<p>The <a href="default_ctags.txt">default content</a> that TmCodeBrowser provides also adds very basic support for:</p>
+<ul>
+<li>Old style dictionary files</li>
+<li>Ant</li>
+<li>XML</li>
+<li>CSS</li>
+<li>xsb_prolog</li>
+<li>Latex</li>
+<li>Actionscript</li></ul>
+<h2><a name="License" class="name">License</a></h2>
+<p>TmCodeBrowser is free for personal use. If however you use it frequently or if you would like to support development of quality OS X software, please consider a donation. Start by clicking on the button below. Payment is handled via PayPal, no PayPal account needed and no registration required. Or better yet, if you know of any contract work for an individual who knows the Appkit inside and out (NeXT/OPENSTEP/OS X developer since 1989) please <a class="external" href="mailto:support&#64;cocoabits.com">contact me</a>!</p>
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+<input type="hidden" name="cmd" value="_xclick" />
+<input type="hidden" name="business" value="gerti-pptmcb@bitart.com" />
+<input type="hidden" name="item_name" value="TmCodeBrowser" />
+<input type="hidden" name="item_number" value="TmCBd" />
+<input type="hidden" name="no_shipping" value="1" />
+<input type="hidden" name="return" value="http://www.cocoabits.com/ThankYou.html" />
+<input type="hidden" name="cancel_return" value="http://www.cocoabits.com/TmCodeBrowser/" />
+
+<input type="hidden" name="no_note" value="0" />
+<input type="hidden" name="currency_code" value="USD" />
+<input type="hidden" name="bn" value="PP-BuyNowBF" />
+<input type="image" src="x-click-butcc.gif" name="submit" alt="TmCodeBrowser purchase link" />
+</form>
+<h2><a name="ChangeLog" class="name">Change Log</a></h2>
+<ul>
+<li><span class="i">Version 1.10</span>:<ul>
+<li>Deal with unexpected ctags output encodings (seems language dependent)</li>
+<li>Add simple Applescript script support to default <span class="i">.ctags.tmcodebrowser</span> file (provided by Guillaume Cerquant)</li></ul>
+</li>
+<li><span class="i">Version 1.10</span>:<ul>
+<li>Updated to ctags 5.7</li>
+<li>Sort is now a per-language setting</li></ul>
+</li>
+<li><span class="i">Version 1.09</span>:<ul>
+<li>Fixed incompatibility with Leopard</li></ul>
+</li>
+<li><span class="i">Version 1.08</span>:<ul>
+<li>Added ctags regular expression for LaTex <span class="i">\begin{section}{Your Section Title}</span> type sections</li>
+<li>TextMate took over &#x2303;&#x2318;T shortcut for <span class="i">Select Bundle Item</span>, so shortcut is now &#x2303;&#x2318;B</li></ul>
+</li>
+<li><span class="i">Version 1.07</span>:<ul>
+<li>Fix incompatibility with TextMate 1.5.1 and later.</li></ul>
+</li>
+<li><span class="i">Version 1.06</span>:<ul>
+<li>Run ctags in background, terminate ctags in case it hangs.</li></ul>
+</li>
+<li><span class="i">Version 1.05</span>:<ul>
+<li>If the panel is set to <span class="i">Hide after selection</span>, do not hide it when the user clicks on a group</li>
+<li>Universal binary</li></ul>
+</li>
+<li><span class="i">Version 1.04</span>:<ul>
+<li>Corrected a link in the manual</li>
+<li>Added <span class="i">Known Problems</span> section to manual, explaining the ctags SQL parse bug</li></ul>
+</li>
+<li><span class="i">Version 1.03</span>:<ul>
+<li>Possible freeze while moving the selection, fixed</li>
+<li>Added some quotes in Objc-C postprocessing script to avoid problems with spaces in paths</li>
+<li>Added line for HTML <span class="i">&lt;div&gt;</span> sections to the default <span class="i">.ctags.tmcodebrowser</span></li>
+<li>Changed handling of .ctags.tmcodebrowser: If <span class="i">~/.ctags.tmcodebrowser</span> does not exist, fall back to internal default. That way users without a customized <span class="i">~/.ctags.tmcodebrowser</span> will benefit from updates to the internal default file</li>
+<li>Changed CFBundleVersion to a growing integer in preparation for automatic version checks by TextMate</li>
+<li>Fixed tabbing through the CodeBrowser panel</li></ul>
+</li>
+<li><span class="i">Version 1.02</span>:<ul>
+<li><span class="i">Manual</span> button was not working in some instances, fixed</li></ul>
+</li>
+<li><span class="i">Version 1.01</span>: Minor bug fixes:<ul>
+<li>Fixed a memory leak</li>
+<li>Use UTF-8 encoding to read back results from ctags</li>
+<li>Added Actionscript definition to the default <span class="i">.ctags.tmcodebrowser</span></li></ul>
+</li>
+<li><span class="i">Version 1.0</span>: First Release using TextMate's .tmplugin support<ul>
+<li>Keyboard navigation and search</li>
+<li>Removed dependency on NSTreeController due to incompatibilities with OS X 10.4.3</li>
+<li>Now also compatible with OS X 10.3.9</li>
+<li>Uses private configuration file to avoid clashes with other <span class="i">.ctags</span> uses</li>
+<li>Adds simple post-processor for Objective-C sources</li></ul>
+</li>
+<li><span class="i">Version 0.2</span>: Plugin via InputManagers hack</li>
+<li><span class="i">Version 0.1</span>: Stand-alone proof of concept</li></ul>
+<h2><a name="Feedback" class="name">Feedback</a></h2>
+
+Please send any feedback and bug reports to <a class="external" href="mailto:support&#64;cocoabits.com?Subject=TmCodeBrowser Feedback (Version 1.11)&amp;Body=TmCodeBrowser Version 1.11">support&#64;cocoabits.com</a>
+<div class="bitart">TmCodeBrowser is a product by <a class="external" href="http://www.cocoabits.com/"><span class="cocoabits">CocoaBits</span></a>, a division of <a class="external" href="http://www.bitart.com/"><span class="bit">bit</span><span class="art">art</span></a></div>
+</div>
+<div class="menuBar">
+<div class="menu">
+<div class="bigicon"><a href="http://www.cocoabits.com/TmCodeBrowser/"><img class="productIcon" src="TmCodeBrowserIcon.png" width="128" height="128" alt="TmCodeBrowserIcon" />
+</a></div>
+<h2>Contents</h2>
+<div class="menu1"><a class="menu" href="#Introduction">Introduction</a></div>
+<div class="menu1"><a class="menu" href="#Sort">Sort</a></div>
+<div class="menu1"><a class="menu" href="#Configuration">Configuration</a></div>
+<div class="menu2"><a class="menu" href="#FloatingPanel">Floating Panel</a></div>
+<div class="menu2"><a class="menu" href="#NormalPanel">Normal Panel</a></div>
+<div class="menu2"><a class="menu" href="#Hideafterselection">Hide after selection</a></div>
+<div class="menu2"><a class="menu" href="#Visibleatlaunch">Visible at launch</a></div>
+<div class="menu1"><a class="menu" href="#Keyboardnavigation">Keyboard navigation</a></div>
+<div class="menu1"><a class="menu" href="#Customization">Customization</a></div>
+<div class="menu2"><a class="menu" href="#Supportforadditionallanguages">Support for additional languages</a></div>
+<div class="menu1"><a class="menu" href="#License">License</a></div>
+<div class="menu1"><a class="menu" href="#ChangeLog">Change Log</a></div>
+<div class="menu1"><a class="menu" href="#Feedback">Feedback</a></div>
+</div>
+</div>
+</body>
+</html>

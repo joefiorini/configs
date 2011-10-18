@@ -1,0 +1,131 @@
+#!makeWebPage
+
+Type:			ProductManual
+BaseURL:		http://www.cocoabits.com/TmCodeBrowser/
+Files:			x-click-butcc.gif functions.js  default_ctags.txt|/theUsers/gerti/BITart/OSX/TmCodeBrowser/.ctags.tmcodebrowser
+HomeURL:		http://www.cocoabits.com/
+Style:			index.css
+
+EndOfHeader
+
+
+TmCodeBrowser Manual
+
+Version: ~VERSION~
+
+
+Introduction
+
+<ScreenShot>
+
+TmCodeBrowser is a 'TextMate plugin' designed to help navigating source files. It will parse <a href="http://ctags.sourceforge.net/languages.html">any language known</a> to the underlying <a href="http://ctags.sourceforge.net/">Exuberant Ctags</a> program (enhanced by a small script to also support Objective-C). It will present classes, subroutines etc. in a TreeView. Clicking on any entry will jump to the corresponding location in the source code.
+
+TmCodeBrowser requires OS X 10.3.9 or later and TextMate v1.1b17 REVISION 687 or later.
+
+Note: When you edit your source code, it will become 'out of sync' with TmCodeBrowser as line numbers shift.
+
+
+Sort
+
+If the 'Sort' checkbox at the top of the TmCodeBrowser panel is checked, all entries will be sorted within their categories. When unchecked, entries will be presented in the order they appear in the source file. The sort setting is remembered for each TextMate language setting.
+
+
+Configuration
+
+You can bring up the configuration panel by clicking on the small 'Config' button at the top of the TmCodeBrowser panel. This dialog then appears:
+
+<ConfigurationPanel>
+
+You can click on the TmCodeBrowser icon to get to the TmCodeBrowser homepage. Clicking on the 'Manual' button will bring up this manual.
+
+The panel can be set to operate in three different modes:
+
+
+
+Floating Panel
+
+In this mode the TmCodeBrowser panel will always be on top of all other TextMate windows. This is handy when you like to always have the panel visible.
+
+
+
+Normal Panel
+
+When this option is selected the TmCodeBrowser panel will behave like standard panels and can become obscured by other windows. To bring it to the front click on it, or use the Menu entry 'Window/Show CodeBrowser' or it's keyboard shortcut ⌃⌘T (in case your browser does not detect this as a UTF-8 document, the previous is supposed to read Ctrl-Cmd-T).
+
+
+
+Hide after selection
+
+In this mode the TmCodeBrowser panel will hide after a selection was made. In this mode it will behave much like TextMate's 'Go to file...' panel.
+
+
+
+Visible at launch
+
+If this option is selected, the TmCodeBrowser panel will automatically appear each time TextMate is launched.
+
+
+Keyboard navigation
+
+TmCodeBrowser tries to be friendly to users who prefer to use the keyboard as much as possible. To make use of this set the Panel mode to your liking (probably >Hide after selection<). Bring the TmCodeBrowser panel up by pressing ⌃⌘T (in case your browser does not detect this as a UTF-8 document, the previous is supposed to read Ctrl-Cmd-T). Enter some characters to select the desired item, the search will behave similar to TextMate's 'Go to file...'. use the 'Up' and 'Down' arrow keys to move the selection, and press the 'Return' or 'Enter' key to make your selection.
+
+
+Customization
+
+TmCodeBrowser uses the <a href="http://ctags.sourceforge.net/">Exuberant Ctags</a> program to parse all files. Exuberant Ctags can be customized and even enhanced to parse other languages by adding some lines to the 'ctags' configuration file. To not conflict with other 'ctags' uses, TmCodeBrowser uses the file <a href="txmt://open?url=file://.ctags.tmcodebrowser">~/.ctags.tmcodebrowser</a> (clicking on <a href="txmt://open?url=file://.ctags.tmcodebrowser">this link</a> will open the file in TextMate). If that does not exist, TmCodeBrowser will use an internal file with <a href="default_ctags.txt">this default content</a>.
+
+
+
+Support for additional languages
+
+The sources for the <a href="http://ctags.sourceforge.net/">Exuberant Ctags</a> are public, and allow anyone to add support for additional languages. However it is also possible to add rudimentary language support by simply adding a few lines to the configuration file.
+
+Here is a brief example for latex, courtesy of Jeroen van der Ham:
+
+{{
+<pre>
+	--langdef=latex
+	--langmap=latex:.tex
+	--regex-latex=/\\label\{*([^} \t]+)[ \t]*\}/\1/l,label/
+	--regex-latex=/^\\(sub)*section{([^}]*)}/\2/s,section/
+</pre>
+}}
+
+The example above (courtesy of Jeroen van der Ham) shows how to add support for languages not supported by the 'Exuberant Ctags': The '--langdef' line gives the language a name, the '--langmap' line tells 'ctags' which extensions files of this language have, and the '--regex-latex' lines define some regular expressions that 'ctags' uses to parse language elements. See the <a href="http://ctags.sourceforge.net/ctags.html">Exuberant Ctags manual page</a> for details.
+
+The <a href="default_ctags.txt">default content</a> that TmCodeBrowser provides also adds very basic support for:
+
+- Old style dictionary files
+
+- Ant
+
+- XML
+
+- CSS
+
+- xsb_prolog
+
+- Latex
+
+- Actionscript
+
+--
+
+
+License
+
+TmCodeBrowser is free for personal use. If however you use it frequently or if you would like to support development of quality OS X software, please consider a donation. Start by clicking on the button below. Payment is handled via PayPal, no PayPal account needed and no registration required. Or better yet, if you know of any contract work for an individual who knows the Appkit inside and out (NeXT/OPENSTEP/OS X developer since 1989) please <a class="external" href="mailto:~EMAIL~">contact me</a>!
+
+
+#paypal
+
+
+#include ChangeLog.mwp
+
+
+Feedback
+
+{{
+Please send any feedback and bug reports to <a class="external" href="mailto:~EMAIL~?Subject=~PRODUCT_NAME~ Feedback (Version ~VERSION~)&amp;Body=~PRODUCT_NAME~ Version ~VERSION~">~EMAIL~</a>
+<div class="bitart">~PRODUCT_NAME~ is a product by <a class="external" href="http://www.cocoabits.com/"><span class="cocoabits">CocoaBits</span></a>, a division of <a class="external" href="http://www.bitart.com/"><span class="bit">bit</span><span class="art">art</span></a></div>
+}}

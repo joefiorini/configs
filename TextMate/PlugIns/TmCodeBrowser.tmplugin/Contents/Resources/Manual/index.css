@@ -1,0 +1,210 @@
+body {
+	background-color: white;
+	
+	background-attachment: fixed;
+	font-family: Arial, Helvetica, sans-serif;
+	font-style: normal;
+	font-weight: normal;
+	height: 100%;
+}
+a {
+	text-decoration: none;
+}
+a.external:hover {
+	background-color: #eeeeff;
+}
+a.local {
+	text-decoration: none;
+	color: #5555ff;
+}
+a.local:hover {
+	background-color: #dddddd;
+}
+div.menuBar {
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	width: 160px;
+	height: 100%;
+	background-color: #eeeeee;
+}
+/*
+NOTE: @@@ position:
+	fixed: Does not scroll (we want this for screen, but does not print)
+	position: absolute: Works for print.
+
+*/
+
+
+div.menu {
+	padding: 5px 5px 5px 5px;
+	height: 100%;
+	overflow: auto;
+}
+a.menu {
+	text-decoration: none;
+	color: #5555ff;
+	font-size: 12px;
+}
+a.menu:hover {
+	background-color: #dddddd;
+}
+div.menu1, div.menu2, div.menu3, div.menu4 {
+	padding-top: 3px;
+}
+div.menu1 {
+	padding-left: 5px;
+}
+div.menu2 {
+	padding-left: 15px;
+}
+div.menu3 {
+	padding-left: 25px;
+}
+div.menu4 {
+	padding-left: 35px;
+}
+div.body {
+	position: absolute;
+	top: 0px;
+	left: 180px;
+	right: 0px;
+	padding-right: 15px;
+}
+p.cs {
+	text-align: center;
+}
+p.csl {
+	text-align: center;
+}
+div.note, div.tip {
+	position: relative;
+	top: -16px;
+	left: 24px;
+	margin-right: 150px;
+	background-color: #dddddd;
+	padding: 8px;
+}
+div.notemarker, div.tipmarker {
+	position: relative;
+	top: 12px;
+}
+b {
+	color: #ff5511;
+}
+div.bigicon {
+	text-align: center;
+}
+.homeIcon {
+	text-align: center;
+	background-color: #eeeeee;
+	border-style:solid;
+	border-width: thin;
+	border-color: #eeeeee;
+}
+.homeIconImg:hover {
+	background-color: #dddddd;
+}
+.productIcon:hover {
+	background-color: #dddddd;
+}
+.textlogo {
+	text-decoration: none;
+	color: #000000;
+}
+.textlogo:hover {
+	text-decoration: none;
+	color: #5555ff;
+}
+ul {
+	
+}
+li {
+	padding-top: 3px;
+}
+span.i {
+	color: #444444;
+	font-style: italic;
+}
+span.bold {
+	font-weight: bolder;
+}
+div.bitart {
+	padding-top: 20px;
+	padding-bottom: 10px;
+	text-align: center;
+	color: #666666;
+	font-size: smaller;
+}
+span.cocoabits {
+	font-family: "Comic Sans MS", Arial, Helvetica, sans-serif;
+	color: #5a9bde;
+}
+span.bit {
+	font-family: Helvetica, sans-serif;
+	color: black;
+}
+span.art {
+	font-family: Times, serif;
+	color: #ff5511;
+	font-style: italic;
+	font-size: larger;
+}
+.code {
+	
+}
+.wideImage
+{
+	background-repeat: no-repeat;
+}
+img {
+	border: none;
+}
+.wideImage img
+{
+	width: 0;
+	margin-left: -99999px;
+	padding-left: 1px;
+}
+.wideImageNew img
+{
+	display: block;
+	max-width: 100%;
+	overflow: none;
+}
+.download {
+	margin: 20px;
+	padding: 10px;
+	border-style:solid;
+	border-width: thin;
+	border-color: black;
+	background-color: #eeeeee;
+	text-align: center;
+}
+table.downloadTable {
+	width: 100%;
+}
+.downloadLink {
+	width: 40%;
+	text-align: center;
+}
+a.downloadLinkLink:hover {
+	background-color: #ccccff;
+}
+.downloadDisclaimer {
+	font-size: smaller;
+	width: 60%;
+	text-align: center;
+}
+.highlight {
+  background-color: yellow;
+}
+.requires {
+	font-size: smaller;
+}
+
+@media print {
+	div.menuBar {
+		position: absolute;
+	}
+}

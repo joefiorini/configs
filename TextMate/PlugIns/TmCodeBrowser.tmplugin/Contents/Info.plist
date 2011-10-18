@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>TmCodeBrowser</string>
+	<key>CFBundleGetInfoString</key>
+	<string>TmCodeBrowser Version 1.11, Copyright 2008 BITart Consulting.</string>
+	<key>CFBundleIconFile</key>
+	<string>TmCodeBrowser</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.bitart.tmcodebrowser</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.11</string>
+	<key>CFBundleSignature</key>
+	<string>BAGK</string>
+	<key>CFBundleVersion</key>
+	<string>0</string>
+	<key>NSPrincipalClass</key>
+	<string>TmCodeBrowser</string>
+</dict>
+</plist>

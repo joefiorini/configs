@@ -1,0 +1,125 @@
+#!/usr/bin/perl -w
+###############################################################################
+#	Copyright 2005 BITart Gerd Knops,  All rights reserved.
+#
+#	Project	: BITart
+#	File	: objctags
+#	Author	: Gerd Knops gerti@BITart.com
+#
+###############################################################################
+#
+#	History:
+#	051027 Creation of file
+#
+###############################################################################
+#
+#	Description:
+#	Quick hack to generate tags from Objective-C source file
+#
+#	$Id:$
+#
+###############################################################################
+#
+# DISCLAIMER
+#
+# BITart and Gerd Knops make no warranties, representations or commitments
+# with regard to the contents of this software. BITart and Gerd Knops
+# specifically disclaim any and all warranties, whether express, implied or
+# statutory, including, but not limited to, any warranty of merchantability
+# or fitness for a particular purpose, and non-infringement. Under no
+# circumstances will BITart or Gerd Knops be liable for loss of data,
+# special, incidental or consequential damages out of the use of this
+# software, even if those damages were foreseeable, or BITart or Gerd Knops
+# was informed of their potential.
+#
+###############################################################################
+# Configuration
+###############################################################################
+	
+	use strict;
+
+###############################################################################
+# Main
+###############################################################################
+	
+	our $dotCtags=shift;
+	our $file=shift;
+	@ARGV=();
+	
+	my $ctags=$0;
+	$ctags=~s/objctags$/ctags/;
+	
+	our %entries=();
+	
+	open(IN,"'$ctags' --options=NONE '--options=$dotCtags' --fields=Kn --excmd=pattern --sort=no -f - '$file'|");
+	while(<IN>)
+	{
+		$entries{$1}=$_ if(/line\:(\d+)/);
+	}
+	close(IN);
+	
+	our $line=0;
+	open(IN,$file);
+	
+	while(<IN>)
+	{
+		$line++;
+		my $ch=substr($_,0,1);
+		if($ch eq '-' || $ch eq '+')
+		{
+			&processMethod($ch,$_);
+		}
+		elsif(/^\s*\@(implementation|interface|protocol)\s+([^\r\n]+)/)
+		{
+			my $typeName=$1;
+			my $def=$2;
+			s/[\r\n]+$//;
+			$def=~s/\t/ /g;
+			my $entry="$def\t$file\t/^$_\$/;\"\t$typeName\tline:$line\n";
+			$entries{$line}=$entry;
+		}
+	}
+	close(IN);
+	
+	foreach my $k (sort {$a<=>$b} keys %entries)
+	{
+		print $entries{$k};
+	}
+
+###############################################################################
+# Subroutines
+###############################################################################
+sub processMethod
+{
+	my $type=shift;
+	my $def=shift;
+	my $defLine=$line;
+	
+	my $typeName='method';
+	$typeName='Class Method' if($type eq '+');
+	
+	if($def!~s/\s*;.*$// && $def!~s/\s*{.*$//)
+	{
+		while(<IN>)
+		{
+			$line++;
+			last if(/^\s*\{/);
+			$def.=$_;
+			last if(s/;[\r\n]*$//);
+		}
+	}
+	
+	my $orig=$def;
+	$orig=~s/[\r\n]*$//;
+	$orig=~s/[\r\n]+/\/n/g;
+	
+	$def=~s/\s*\([^\)]+\)\s*//g;
+	$def=~s/:\S+/:/g;
+	$def=~s/\s*//g;
+	
+	my $entry="$def\t$file\t/^$orig\$/;\"\t$typeName\tline:$defLine\n";
+	$entries{$defLine}=$entry;
+}
+
+1;
+############################################################################EOF

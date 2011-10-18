@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger</string>
+	<key>name</key>
+	<string>rdebug</string>
+	<key>tabTrigger</key>
+	<string>rdebug</string>
+	<key>uuid</key>
+	<string>B663661F-F20D-498F-9E66-2A271C2C2EE5</string>
+</dict>
+</plist>
