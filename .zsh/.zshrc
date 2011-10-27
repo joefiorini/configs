@@ -61,7 +61,7 @@ reload() {
 }
 
 customize() {
-  e ~/.zshrc
+  e ~/.zshrc && reload
 }
 
 whodoneit() {
