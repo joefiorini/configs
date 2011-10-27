@@ -25,5 +25,6 @@
   authors = Jonathan Penn <jonathan@navel-labs.com>
 	authors = Ivan Davydov <idavydov@sparkbase.com>
 	authors = Melissa Lewis <melissa.lewis@leandog.com>
+	authors = Kevin Day <kday@sparkbase.com>
 [core]
 	excludesfile = /Users/joe/.gitignore
