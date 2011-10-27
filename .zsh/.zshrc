@@ -51,6 +51,10 @@ e() {
   $EDITOR $*
 }
 
+write-gemset() {
+  echo "$1 global" > .rbenv-gemsets
+}
+
 reload() {
   source ~/.zshenv
   source ~/.zshrc
