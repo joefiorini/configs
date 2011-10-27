@@ -1,0 +1,12 @@
+#!/bin/bash
+remote=$(git config --get save.remote)
+branch=$(git config --get save.branch)
+
+[ "$remote" ] || echo "Please specify a remote in .git/config under [save]"
+[ "$branch" ] || echo "Please specify a branch in .git/config under [save]"
+
+[[ -z "$remote" || -z "$branch" ]] && exit 1
+
+git fetch $remote
+git cherry-pick $remote/$branch
+git reset head^
