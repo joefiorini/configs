@@ -91,7 +91,7 @@ augroup RubyOpts
   highlight Pmenu ctermbg=238 gui=bold
   iabbrev rdebug    require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
   autocmd User Rails Rnavcommand factory spec/factories -suffix=_factory.rb -default=model()
-
+  autocmd User Rails Rnavcommand feature features -suffix=.feature -default=cucumber
 
 augroup END
 
