@@ -1,6 +1,6 @@
 [user]
-	name = Joe Fiorini
-	email = joe@joefiorini.com
+  name = Joe Fiorini
+  email = joe@joefiorini.com
 [github]
   token = 22b2f50b9ad4f484fd37c6f5eb51e695
   user = joefiorini
@@ -23,8 +23,9 @@
   authors = Veezus Kreist <almighty@veez.us>
   authors = Joe Fiorini <joe@joefiorini.com>
   authors = Jonathan Penn <jonathan@navel-labs.com>
-	authors = Ivan Davydov <idavydov@sparkbase.com>
-	authors = Melissa Lewis <melissa.lewis@leandog.com>
-	authors = Kevin Day <kday@sparkbase.com>
+  authors = Ivan Davydov <idavydov@sparkbase.com>
+  authors = Melissa Lewis <melissa.lewis@leandog.com>
+  authors = Kevin Day <kday@sparkbase.com>
+  authors = Zee Spencer <zee@zacharyspencer.com>
 [core]
-	excludesfile = /Users/joe/.gitignore
+  excludesfile = /Users/joe/.gitignore
