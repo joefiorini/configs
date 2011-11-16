@@ -245,14 +245,6 @@ endfun
 " and map it to <Leader>c
 nmap <Leader>c :call ClearAllTrailingSpaces()<CR>
 
-" Convert one line blocks in braces { } to multiline do ... end
-fun! BlockBracesToDoEnd()
-  s/{\(.*\)}/do\r\1\rend/
-endfun
-
-" and map it to <Leader>b for block
-nmap <Leader>b :call BlockBracesToDoEnd()<CR>
-
 function! ToggleScratch()
   if expand('%') == g:ScratchBufferName
     quit
