@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 remote=$(git config --get save.remote)
 branch=$(git config --get save.branch)
 
