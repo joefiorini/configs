@@ -34,5 +34,6 @@
   authors = Melissa Lewis <melissa.lewis@leandog.com>
   authors = Kevin Day <kday@sparkbase.com>
   authors = Zee Spencer <zee@zacharyspencer.com>
+	authors = Eric Hankinson <eric.hankinson@gmail.com>
 [core]
   excludesfile = /Users/joe/.gitignore
