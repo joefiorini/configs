@@ -15,6 +15,8 @@ syntax on                     "turn on syntax highlighting
 set showcmd                   "show incomplete cmds down the bottom
 set showmode                  "show current mode down the bottom
 
+set splitright                "open vsplits to the right
+
 set incsearch                 "find the next match as we type the search
 set hlsearch                  "hilight searches by default
 set ignorecase                "case insesitive searches
