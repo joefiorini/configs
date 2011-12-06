@@ -203,6 +203,7 @@ map <Leader>ls :buffers<CR>
 " Finally quit hitting :Q instead of :q
 cmap Q<CR> q
 
+cmap <C-T> <C-B>map ,t :<C-E><lt>CR>
 " Make windows a little easier to resize
 nnoremap <Leader>= <C-W>+
 nnoremap <Leader>- <C-W>-
