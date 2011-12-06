@@ -94,6 +94,11 @@ augroup RubyOpts
   iabbrev rdebug    require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
   autocmd User Rails Rnavcommand factory spec/factories -suffix=_factory.rb -default=model()
   autocmd User Rails Rnavcommand feature features -suffix=.feature -default=cucumber
+  autocmd User Rails Rnavcommand acceptance spec/acceptance -suffix=.feature -default=cucumber
+  autocmd User Rails Rnavcommand support spec/support features/support -default=env
+  autocmd User Rails Rnavcommand js app/assets/javascripts -suffix=.js.coffee -default=application
+  autocmd User Rails Rnavcommand jsspec spec/javascripts -suffix=.js.coffee -default=spec
+
 
 augroup END
 
