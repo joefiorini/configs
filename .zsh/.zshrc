@@ -22,13 +22,12 @@ set -o emacs
 ###### Aliases
 
 alias ll='/bin/ls -Gla'
-alias gs='git stash'
-alias gsp='git stash pop'
 alias gf='git fetch'
 alias blog='cd ~/Sites/blog.densitypop.com'
 alias cwip='time cucumber -p wip'
 alias cuke='time cucumber -p default'
 alias cpkey="cat ~/.ssh/id_rsa.pub | pbcopy"
+alias g='git'
 
 ###### Speed up tab completion
 zstyle ':completion:*' accept-exact '*(N)'
@@ -47,7 +46,7 @@ pless() {
   pygmentize $1 | less -r
 }
 
-e() {
+vim() {
   $EDITOR $*
 }
 

@@ -15,6 +15,13 @@
   rb  = rebase
   unstage = reset HEAD $1
   put = push origin HEAD
+
+  s   = status
+  c   = commit -v
+  d   = diff
+  dc  = diff --cached
+  pr  = pull --rebase
+  ar  = add -A
 [diff]
   tool = vimdiff
 [color]

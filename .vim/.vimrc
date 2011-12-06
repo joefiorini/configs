@@ -229,10 +229,6 @@ vmap ] s]
 vmap ' s'
 vmap } s}
 
-" visual shifting (without leaving visual mode)
-vnoremap < <gv
-vnoremap > >gv
-
 " from Gary Bernhardt: don't close splits when deleting buffers
 cnoremap <expr> bd (getcmdtype() == ':' ? 'Bclose' : 'bd')
 
