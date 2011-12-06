@@ -1,0 +1,37 @@
+---
+layout: default
+---
+{% for post in site.posts %}
+<div class="row">
+  {% capture is_even %}{% cycle 0,1 %}{% endcapture %}
+  {% if is_even == '0' %}
+  <div class="four columns">
+    <img src="http://placehold.it/250x150">
+  </div>
+  {% endif %}
+  <div class="eight columns">
+    <h2>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </h2>
+    {{ post.content }}
+    <p><a href="{{ post.url }}">Read more</a></p>
+  </div>
+  {% if is_even == '1' %}
+  <div class="four columns">
+    <img src="http://placehold.it/250x150">
+  </div>
+  {% endif %}
+  <hr>
+</div>
+{% if forloop.index == 3 %}
+<div class="row">
+  <div class="two columns">
+  </div>
+  <div class="eight columns">
+    <img src="http://placehold.it/940x200">
+  </div>
+  <div class="two cloumns"></div>
+  <hr>
+</div>
+{% endif %}
+{% endfor %}

@@ -1,0 +1,11 @@
+#!/bin/bash
+# USAGE: script/convert week8
+# Uses $path to find episodes and drop converted output
+
+name=$1
+path=../artifacts/episodes
+original=$path/$NAME.mp3
+new=$path/$NAME.ogg
+
+
+ffmpeg -i $original -ab 6400 $new

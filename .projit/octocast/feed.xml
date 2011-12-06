@@ -1,0 +1,51 @@
+---
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" xmlns:admin="http://webns.net/mvcb/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:itunes="http://www.itunes.com/dtds/podcast-1.0.dtd" xmlns:media="http://search.yahoo.com/mrss/" version="2.0">
+
+  <channel>
+
+    <title>{{ site.title }}</title>
+    <link>{{ site.url }}</link>
+    <pubDate>Thur, 26 Aug 2011 11:30:00 -0500</pubDate>
+    <description>{{ site.description }}</description>
+    <language>en-us</language>
+    <itunes:subtitle>{{ site.subtitle }}</itunes:subtitle>
+    <itunes:author>{{ site.author }}</itunes:author>
+    <itunes:summary>{{ site.description }}</itunes:summary>
+    <itunes:image href="{{ site.albumart }}" />
+    <itunes:keywords>productivity, business, startups, bootstrapping, development, software</itunes:keywords>
+    <itunes:explicit>no</itunes:explicit>
+    <itunes:owner>
+      <itunes:name>{{ site.owner }}</itunes:name>
+      <itunes:email>{{ site.owner_email }}</itunes:email>
+    </itunes:owner>
+
+    <itunes:category text="Business">
+      <itunes:category text="Technology"/>
+    </itunes:category>
+
+    {% for post in site.posts %}
+    <item>
+      <title>{{ post.title }}</title>
+      <link>{{ site.url }}{{ post.url }}</link>
+      <guid>{{ site.url }}{{ post.url }}</guid>
+      <pubDate>{{ post.date | date_to_xmlschema }}</pubDate>
+      <author>Joe Fiorini &amp; Alan Audette</author>
+      <description>{{ post.content | xml_escape }}</description>
+      <enclosure url="{{ post.sources | first | download_path }}" length="23430919" type="audio/mpeg"/>
+      <category>Business</category>
+      <itunes:author>{{ site.author }}</itunes:author>
+      <itunes:duration>{{ post.duration }}</itunes:duration>
+      <itunes:subtitle />
+      <itunes:summary>{{ post.content | xml_escape }}</itunes:summary>
+      <itunes:keywords>startups, marketing, technology, geeks, developers, programming, ios, Ruby, Rails, Javascript</itunes:keywords>
+      <itunes:image href="{{ site.albumart }}" />
+      <media:content url="{{ post.sources | first | download_path }}" fileSize="39249922" type="audio/mpeg" />
+      <itunes:explicit>No</itunes:explicit>
+    </item>
+    {% endfor %}
+
+  </channel>
+
+</rss>

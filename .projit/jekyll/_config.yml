@@ -1,0 +1,13 @@
+url: ""
+pygments: true
+exclude: [/bin, Gemfile, Gemfile.lock]
+markdown: kramdown
+permalink: pretty
+paginate: 10
+author:
+contact_email:
+title:
+ga_account: UA-23094691-1
+
+kramdown:
+  entity_output: symbolic

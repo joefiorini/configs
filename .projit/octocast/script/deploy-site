@@ -1,0 +1,4 @@
+#!/bin/bash
+set -e
+
+script/deploy $* s3://thecheckin.densitypop.com

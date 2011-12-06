@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'shellwords'
+require 'jekyll'
+
+bucket_path = ARGV.pop
+site = Jekyll::Site.new(Jekyll.configuration({}))
+
+begin
+  site.process
+rescue Jekyll::FatalException => e
+  puts
+  puts "ERROR: YOUR SITE COULD NOT BE BUILT:"
+  puts "------------------------------------"
+  puts e.message
+  exit(1)
+end
+
+
+deploy_from = Shellwords.shellescape(site.config['destination'])
+
+puts "Deploying to #{bucket_path} from #{deploy_from}"
+
+`s3cmd sync #{Shellwords.shelljoin(ARGV)} -P --delete-removed  #{deploy_from}/ #{bucket_path}`

@@ -1,0 +1,19 @@
+url: "http://leandog.tv/smr"
+title: "Software Makers Radio"
+description: Software Makers Radio is a podcast featuring conversations with people who make software from your friends at LeanDog.
+subtitle: Conversations with people who make software from your friends at LeanDog.
+author: LeanDog Software
+feed_url: "feeds.feedburner.com/softwaremakersradio"
+episode_bucket: http://checkinepisodes.dev
+owner: Joe Fiorini &amp; LeanDog Software
+owner_email: softwaremakersradio@leandog.tv
+pygments: true
+exclude: [bin, script, Gemfile, Gemfile.lock, episodes]
+markdown: kramdown
+permalink: /episodes/:title
+destination: public
+paginate: 10
+
+kramdown:
+  entity_output: symbolic
+

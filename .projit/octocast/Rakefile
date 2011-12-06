@@ -1,0 +1,31 @@
+desc "Configure development mode"
+task :draft do
+  puts "* Configuring _config.yml to draft... [episode_bucket: http://checkinepisodes.dev]"
+  edit_config("episode_bucket", "http://checkinepisodes.dev")
+end
+
+desc "Configure release mode"
+task :release do
+  puts "* Configuring _config.yml to release... [episode_bucket: s3]"
+  edit_config "episode_bucket", '"http://thecheckin.s3.amazonaws.com"'
+end
+
+desc "Run a server"
+task :start => :draft do
+  `jekyll --server`
+end
+
+desc "Deploy site in production mode"
+task :deploy => :release do
+  `script/deploy-site`
+end
+
+## Helpers
+
+def edit_config(option_name, value)
+  config = File.read("_config.yml")
+  regexp = Regexp.new('(^\s*' + option_name + '\s*:\s*)(\S+)(\s*)$')
+  config.sub!(regexp,'\1'+value+'\3')
+  File.open("_config.yml", 'w') {|f| f.write(config)}
+end
+
