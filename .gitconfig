@@ -15,6 +15,7 @@
   rb  = rebase
   unstage = reset HEAD $1
   put = push origin HEAD
+  recommit = commit --amend -C HEAD
 
   s   = status
   c   = commit -v
