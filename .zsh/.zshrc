@@ -6,6 +6,12 @@ colors
 autoload -U go          # custom function to jump to project dirs
 go
 
+# use zmv plugin for easier bulk file renaming
+autoload -U zmv
+# load cdr plugin for remembering chpwd history
+autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
+add-zsh-hook chpwd chpwd_recent_dirs
+
 ###### Options
 setopt auto_cd          # auto cd when dir name is typed
 setopt cdablevars       # cd into named vars
@@ -28,6 +34,8 @@ alias cwip='time cucumber -p wip'
 alias cuke='time cucumber -p default'
 alias cpkey="cat ~/.ssh/id_rsa.pub | pbcopy"
 alias g='git'
+alias mmv='noglob zmv -W'
+
 
 ###### Speed up tab completion
 zstyle ':completion:*' accept-exact '*(N)'
