@@ -68,7 +68,7 @@ reload() {
 }
 
 customize() {
-  e ~/.zshrc && reload
+  vim ~/.zshrc && reload
 }
 
 whodoneit() {
