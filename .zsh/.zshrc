@@ -33,6 +33,7 @@ alias blog='cd ~/Sites/blog.densitypop.com'
 alias cwip='time cucumber -p wip'
 alias cuke='time cucumber -p default'
 alias cpkey="cat ~/.ssh/id_rsa.pub | pbcopy"
+alias gignore="echo $1 >> .gitignore"
 alias g='git'
 alias mmv='noglob zmv -W'
 
