@@ -98,6 +98,7 @@ augroup RubyOpts
   autocmd User Rails Rnavcommand support spec/support features/support -default=env
   autocmd User Rails Rnavcommand js app/assets/javascripts -suffix=.js.coffee -default=application
   autocmd User Rails Rnavcommand jsspec spec/javascripts -suffix=.js.coffee -default=spec
+  autocmd User Rails Rnavcommand presenter app/presenters -suffix=_presenter.rb -default=application
 
 
 augroup END
