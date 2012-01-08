@@ -1,4 +1,4 @@
-fpath=($fpath $HOME/.zsh/func)
+fpath=($HOME/.zsh/completions $HOME/.zsh $fpath)
 export PATH="/usr/local/bin:$PATH:$HOME/bin"
 export PAGER="less"
 export EDITOR="/Applications/MacVim.app/Contents/MacOS/Vim"

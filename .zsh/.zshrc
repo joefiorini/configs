@@ -13,7 +13,6 @@ autoload -Uz chpwd_recent_dirs cdr add-zsh-hook
 add-zsh-hook chpwd chpwd_recent_dirs
 
 ###### Options
-setopt auto_cd          # auto cd when dir name is typed
 setopt cdablevars       # cd into named vars
 setopt prompt_subst     # enable var expansion in prompt
 
@@ -29,7 +28,6 @@ set -o emacs
 
 alias ll='/bin/ls -Gla'
 alias gf='git fetch'
-alias blog='cd ~/Sites/blog.densitypop.com'
 alias cwip='time cucumber -p wip'
 alias cuke='time cucumber -p default'
 alias cpkey="cat ~/.ssh/id_rsa.pub | pbcopy"
@@ -37,17 +35,13 @@ alias gignore="echo $1 >> .gitignore"
 alias g='git'
 alias mmv='noglob zmv -W'
 
+alias ql='qlmanage -p 2>/dev/null'
+
 
 ###### Speed up tab completion
 zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
-
-###### Directory Shortcuts
-
-if [ -f ~/.zshdirs ]; then
-  source ~/.zshdirs
-fi
 
 ###### Functions
 
@@ -57,10 +51,6 @@ pless() {
 
 vim() {
   $EDITOR $*
-}
-
-write-gemset() {
-  echo "$1 global" > .rbenv-gemsets
 }
 
 reload() {
@@ -88,14 +78,6 @@ blog-code() {
   pygmentize -f html -l $LANG $1 | tidy -omit -wrap 80 -bare --show-warnings no --output-html yes --doctype omit --tidy-mark no | sed 's/<title><\/title>//' | pbcopy
 }
 
-color-my-ruby() {
-  pygmentize -f rtf -O style=colorful -l ruby $1 | pbcopy
-}
-
-color-my-code() {
-  pygmentize -f rtf -O style=colorful $* | pbcopy
-}
-
 tellme() {
   eval "$*"
   growlnotify -t "Command Complete" -s -m "$*"
@@ -107,16 +89,8 @@ function backward-kill-partial-word {
         zle backward-kill-word "$@"
 }
 
-mdown() {
-  ruby -rubygems -e "require 'rdiscount'; puts RDiscount.new(File.read(ARGV[0]), :smart).to_html" -- $1
-}
-
 zle -N backward-kill-partial-word
 bindkey '^Xw' backward-kill-partial-word
-
-command_exists(){
-  command -v "$1" &>/dev/null ;
-}
 
 print_table () {
   sed -n "/\"$1\".* do |t|$/,/end/ s/.*/&/ p" db/schema.rb
@@ -140,17 +114,43 @@ gtd() {
   fi
 }
 
+# rackup app in current directory
+ru(){
+  if [ -f 'config.ru' ]; then
+    rackup config.ru $*
+  elif [ -f 'app.rb' ]; then
+    rackup app.rb $*
+  else
+    rackup $*
+  fi
+}
+
 ###### Prompt
 
-PS1="%n@%m:%~%# "
-source "$HOME/.zsh/func/prompt_jaf_setup"
+autoload -U spectrum
+spectrum
+
+autoload -Uz vcs_info
+
+local smiley="%(?,%{$FG[064]%}⊕%{$reset_color%},%{$FG[160]%}⊗%{$reset_color%})"
+
+zstyle ':vcs_info:*' check-for-changes true
+zstyle ':vcs_info:*' stagedstr "%{$FG[037]%}+%{$reset_color%}"
+zstyle ':vcs_info:*' unstagedstr "%{$FG[160]%}!%{$reset_color%}"
+zstyle ':vcs_info:*' formats "(%{$FG[064]%}%b%{$reset_color%}%u%c)"
+zstyle ':vcs_info:*' actionformats \
+        "[%{$FG[064]%}%r%{$reset_color%}|%{$FG[160]%}%a%{$reset_color%}]"
+precmd () { vcs_info }
+
+local jobs="%(1j, %{$FG[160]%}%j%{$reset_color%},)"
+PROMPT='${smiley}${jobs} '
+RPROMPT='%{$FG[136]%}$(rbenv prompt)%{$reset_color%} ${vcs_info_msg_0_}'
+
+command_exists(){
+  command -v "$1" &>/dev/null ;
+}
 
 ###### hub
-command_exists hub && eval `hub alias -s zsh`
-
+command_exists hub && eval "$(hub alias -s zsh)"
 ###### rbenv
 command_exists rbenv && eval "$(rbenv init -)"
-
-###### rvm
-#
-#[[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm"
