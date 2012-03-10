@@ -275,6 +275,8 @@ map <leader>a :tabe %%
 map <leader>n :Rename %%
 map <leader>k :!mkdir %%
 
+map <leader>h :call Pastepatch()<cr>:e<cr>
+
 " Open files with <leader>f
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 " Open files, limited to the directory of the current file, with <leader>gf
@@ -293,5 +295,12 @@ function! s:align()
     normal! 0
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
+endfunction
+
+function! Pastepatch()
+  let patch = split(@*, '\n')
+  let patch_tmpfile = '/tmp/pastepatch'
+  call writefile(patch, patch_tmpfile)
+  call system("patch -p0 < /tmp/pastepatch")
 endfunction
 
