@@ -1,0 +1,7 @@
+#!/bin/bash
+
+[ "$DEVICE" ] || DEVICE=/dev/disk5
+read -p "What is the name of this movie? " title
+
+HandBrakeCLI --input $DEVICE --preset "AppleTV 2" --main-feature --audio "1,2,3,4,5" --output "/Volumes/Lone Pine/Extras/Video Drop Queue/$title.mp4"
+
