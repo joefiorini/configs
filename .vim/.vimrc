@@ -50,8 +50,6 @@ set wildmode=list:longest
 
 set mouse-=a                  "disable mouse automatically entering visual mode
 
-let mapleader = ","           "remap leader to ',' which is much easier than '\'
-
 set switchbuf=useopen         "don't reopen already opened buffers
 
 set cmdheight=2               "make the command line a little taller to hide "press enter to viem more" text
@@ -196,7 +194,7 @@ map <Leader>rs :!rspactor<CR>
 map <Leader>gx :!gitx<CR>
 
 " Buffer navigation
-map <Leader>, <C-^>
+map <Leader><Leader> <C-^>
 map <Leader>] :bnext<CR>
 map <Leader>[ :bprev<CR>
 map <Leader>ls :buffers<CR>
