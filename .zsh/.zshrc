@@ -35,8 +35,9 @@ alias gignore="echo $1 >> .gitignore"
 alias g='git'
 alias mmv='noglob zmv -W'
 
-alias ql='qlmanage -p 2>/dev/null'
+alias lsdiff='git show --oneline --name-only'
 
+alias ql='qlmanage -p 2>/dev/null'
 
 ###### Speed up tab completion
 zstyle ':completion:*' accept-exact '*(N)'
@@ -44,6 +45,10 @@ zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
 
 ###### Functions
+
+cppatch() {
+  `git diff --no-prefix head^ $1 | pbcopy`
+}
 
 pless() {
   pygmentize $1 | less -r
