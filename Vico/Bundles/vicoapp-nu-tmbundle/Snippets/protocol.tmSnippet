@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>(protocol ${1:ProtocolName}
+	$0)</string>
+	<key>name</key>
+	<string>protocol</string>
+	<key>scope</key>
+	<string>source.nu</string>
+	<key>tabTrigger</key>
+	<string>proto</string>
+	<key>uuid</key>
+	<string>CF3D79F3-A7D6-4C2C-B7C1-2CA115A0F4BB</string>
+</dict>
+</plist>

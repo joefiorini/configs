@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>(task "default" =&gt; "${1:default_task}")</string>
+	<key>name</key>
+	<string>default task</string>
+	<key>scope</key>
+	<string>source.nu</string>
+	<key>tabTrigger</key>
+	<string>dtask</string>
+	<key>uuid</key>
+	<string>4191C797-7A4C-4AAD-ADE9-39BEC59C055B</string>
+</dict>
+</plist>

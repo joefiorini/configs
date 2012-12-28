@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>name</key>
+	<string>Objective-C message call indentation</string>
+	<key>scope</key>
+	<string>meta.function-call.objc</string>
+	<key>settings</key>
+	<dict>
+		<key>indentExpression</key>
+		<string>
+;
+; the code should return the absolute amount of whitespace to use for the current line
+; return a negative number to use default indentation rules
+;
+(set text (current-text))
+(set string ((text textStorage) string))
+(set lineRange ((text textStorage) rangeOfLineAtLocation:(text caret)))
+(set range ((text document) rangeOfScopeSelector:"meta.bracketed.objc" atLocation:(text caret)))
+(if (lt (first lineRange) (first range))
+	-1
+(else
+	; find first colon
+	(set colonRange (((text textStorage) string) rangeOfString:":" options:0 range:range))
+	(set location (first colonRange))
+	(if (and (not (eq location NSNotFound)) (lt location (first lineRange)))
+		(set col ((text textStorage) columnAtLocation:location))
+		; now find the first colon on the current line
+		(set colon2 (((text textStorage) string) rangeOfString:":" options:0 range:lineRange))
+		(if (eq (first colon2) NSNotFound)
+			-1
+			(else
+				(set col2 ((text textStorage) columnAtLocation:(first colon2)))
+				(set curIndent (text lengthOfIndentAtLocation:(text caret)))
+				(set indent (- col (- col2 curIndent)))
+				(if (lt indent 0) 0 (else indent))) )
+		(else
+			-1))
+))
+		</string>
+	</dict>
+	<key>uuid</key>
+	<string>F9A613AE-5070-11E0-87E4-1786A0A61BAF</string>
+</dict>
+</plist>

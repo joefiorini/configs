@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;!doctype html&gt;
+&lt;!--[if lt IE 9]&gt;&lt;html class=&quot;ie&quot;&gt;&lt;![endif]--&gt;
+&lt;!--[if gte IE 9]&gt;&lt;!--&gt;&lt;html&gt;&lt;!--&lt;![endif]--&gt;
+
+	&lt;head&gt;
+		&lt;meta charset=&quot;utf-8&quot;/&gt;
+		&lt;meta http-equiv=&quot;X-UA-Compatible&quot; content=&quot;IE=edge,chrome=1&quot;/&gt;
+		&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;/&gt;
+
+		&lt;title&gt;&lt;/title&gt;
+
+		&lt;link rel=&quot;stylesheet&quot; href=&quot;&quot;/&gt;
+
+        &lt;!--&lt;script src=&quot;//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js&quot;&gt;&lt;/script&gt;--&gt;
+		&lt;!--[if lt IE 9]&gt;
+			&lt;script src=&quot;//html5shim.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+		&lt;![endif]--&gt;
+	&lt;/head&gt;
+
+	&lt;body lang=&quot;en&quot;&gt;
+
+
+
+	&lt;/body&gt;
+
+&lt;/html&gt;</string>
+	<key>name</key>
+	<string>HTML 5 page</string>
+	<key>scope</key>
+	<string>text.html, text.plain, text.html.ee</string>
+	<key>tabTrigger</key>
+	<string>page</string>
+	<key>uuid</key>
+	<string>5ECDF8FE-BD97-41F8-AC04-3CBC764426CD</string>
+</dict>
+</plist>

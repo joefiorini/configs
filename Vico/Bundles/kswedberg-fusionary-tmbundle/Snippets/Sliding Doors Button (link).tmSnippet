@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>&lt;a class="btn" href="${1:#}"&gt;&lt;span&gt;${3:Link Text}&lt;/span&gt;&lt;/a&gt;</string>
+	<key>name</key>
+	<string>Sliding Doors Button (link)</string>
+	<key>scope</key>
+	<string>text.html, text.html.ee</string>
+	<key>tabTrigger</key>
+	<string>btn</string>
+	<key>uuid</key>
+	<string>6A78142F-50A5-4DEC-9132-8408D33004F5</string>
+</dict>
+</plist>
