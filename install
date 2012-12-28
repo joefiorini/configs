@@ -37,3 +37,7 @@ for extra in $app_support_files; do
     ln -s $orig "$app_support/$extra"
   fi
 done
+
+if [ ! -f ~/Library/Preferences/com.googlecode.iterm2.plist ]; then
+  cp iTerm2/com.googlecode.iterm2.plist ~/Library/Preferences/
+fi
