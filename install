@@ -28,7 +28,7 @@ for extra in $homedir_files; do
   fi
 done
 
-app_support_files="TextMate"
+app_support_files="TextMate Vico"
 
 for extra in $app_support_files; do
   name=$(basename $extra)
@@ -42,9 +42,4 @@ done
 
 if [ ! -f ~/Library/Preferences/com.googlecode.iterm2.plist ]; then
   cp iTerm2/com.googlecode.iterm2.plist ~/Library/Preferences/
-fi
-
-if [ ! -f ~/Library/Application\ Support/Vico ]; then
-  mkdir ~/Library/Application\ Support/Vico
-  cp -r Vico/Bundles ~/Library/Application\ Support/Vico/
 fi
