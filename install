@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export PATH="/usr/X11/bin:$PATH" # so I can continue using `lndir` until Apple gets rid of X11 tools altogether
+
 configs_dir=$(dirname $0)
 if [ $(echo $0 | cut -c1) = "/" ]; then
 	configs_dir=$(dirname $0)
