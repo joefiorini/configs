@@ -47,6 +47,7 @@ end
 
 set wildmenu                  "make tab completion act more like bash
 set wildmode=list:longest
+set completeopt=menu,longest
 
 set mouse-=a                  "disable mouse automatically entering visual mode
 
@@ -57,6 +58,20 @@ set cmdheight=2               "make the command line a little taller to hide "pr
 set shell=/bin/sh             "make sure Vim sources my .zshrc
 
 set ofu=syntaxcomplete#Complete "Turn on omnicomplete
+
+function! ChgExt(ext)
+	let l:curfile = expand("%:p")
+  let l:newfile = expand("%:r") . a:ext
+  echo l:newfile
+	let v:errmsg = ""
+	silent! exe "saveas!" . " " . l:newfile
+  if expand("%:p") !=# l:curfile && filewritable(expand("%:p"))
+    silent exe "bwipe! " . l:curfile
+    if delete(l:curfile)
+      echoerr "Could not delete " . l:curfile
+    endif
+  endif
+endfunction
 
 " ZoomWin configuration
 map <Leader>z :ZoomWin<CR>
@@ -72,12 +87,16 @@ augroup FTCheck
   au Bufenter *.h setfiletype objc
   au Bufenter *.pch setfiletype objc
   au Bufenter *.clj setfiletype clojure
+  au Bufenter *.plates setfiletype html
   au BufNewFile,BufRead *.liquid   setf liquid
   " Thorfile, Rakefile and Gemfile are Ruby
   au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
 
 augroup END
 
+augroup WebDesign
+  autocmd FileType css,scss,less,styl   set omnifunc=csscomplete#CompleteCSS
+augroup END
 augroup RubyOpts
 
   "autoindent with two spaces, always expand tabs
@@ -87,9 +106,12 @@ augroup RubyOpts
   autocmd FileType ruby,eruby               let g:rubycomplete_rails = 1
   autocmd FileType ruby,eruby               let g:rubycomplete_classes_in_global = 1
   autocmd FileType ruby,eruby               map <Leader>h :%s/:\(\w\+\) =>/\1:/g<CR>
+  autocmd FileType ruby,eruby               imap <C-l> <space>=><space>
+
   autocmd BufNewFile,BufRead *_spec.rb compiler rspec
   highlight Pmenu ctermbg=238 gui=bold
   iabbrev rdebug    require 'ruby-debug'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
+  iabbrev rpry    require 'pry'; require 'pry-nav'; binding.pry
   autocmd User Rails Rnavcommand factory spec/factories -suffix=_factory.rb -default=model()
   autocmd User Rails Rnavcommand feature features -suffix=.feature -default=cucumber
   autocmd User Rails Rnavcommand acceptance spec/acceptance -suffix=.feature -default=cucumber
@@ -97,6 +119,8 @@ augroup RubyOpts
   autocmd User Rails Rnavcommand js app/assets/javascripts -suffix=.js.coffee -default=application
   autocmd User Rails Rnavcommand jsspec spec/javascripts -suffix=.js.coffee -default=spec
   autocmd User Rails Rnavcommand presenter app/presenters -suffix=_presenter.rb -default=application
+  autocmd User Rails Rnavcommand representer app/representers -suffix=_representer.rb -default=application
+  autocmd User Rails Rnavcommand concern app/concerns -suffix=.rb -default=application
 
 
 augroup END
@@ -111,6 +135,9 @@ augroup END
 set statusline=%F%m%r%h%w\ [TYPE=%Y]\ \ \ \ \ \ \ \ \ \ \ \ [POS=%2l,%2v][%p%%]\ \ \ \ \ \ \ \ \ \ \ \ [LEN=%L]
 set laststatus=2
 
+let g:user_zen_settings = {
+\  'indentation' : '  ',
+\}
 
 set grepprg=ack
 function! Ack(args)
@@ -155,7 +182,6 @@ map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 
 " Make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
-inoremap <C-L> <C-O>:nohls<CR>
 
 " Make <c-l> print the path to file being edited in ex mode
 cmap <c-l> <c-r>=expand("%")<CR>
@@ -182,9 +208,6 @@ map <C-F> :grep "" <LEFT><LEFT>
 " Make omnicomplete a bit easier
 imap <Leader>o <C-x><C-o>
 
-" For Passenger-hosted apps
-nmap ss :!touch tmp/restart.txt<CR>
-
 " Show NERD_Tree with line numbers for easier navigation
 map <Leader>d :Bclose<CR>
 
@@ -202,7 +225,7 @@ map <Leader>ls :buffers<CR>
 " Finally quit hitting :Q instead of :q
 cmap Q<CR> q
 
-cmap <C-T> <C-B>map ,t :<C-E><lt>CR>
+cmap <C-T> <C-B>map <Leader>t :<C-E><lt>CR>
 " Make windows a little easier to resize
 nnoremap <Leader>= <C-W>+
 nnoremap <Leader>- <C-W>-
@@ -219,9 +242,6 @@ vmap <C-k> [egv
 " For allml plugin
 inoremap <M-o> <Esc>o
 let g:allml_global_maps = 1
-
-" Hashrocket shortcut compliments of TextMate
-imap <C-l> <space>=><space>
 
 " Insert []
 imap <C-]> <C-s>]
@@ -273,9 +293,7 @@ cnoremap %% <C-R>=expand("%:h")<cr>/
 map <leader>e :e %%
 map <leader>a :tabe %%
 map <leader>n :Rename %%
-map <leader>k :!mkdir %%
-
-map <leader>h :call Pastepatch()<cr>:e<cr>
+map <leader>k :!mkdir -p %%
 
 " Open files with <leader>f
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
@@ -295,12 +313,5 @@ function! s:align()
     normal! 0
     call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
   endif
-endfunction
-
-function! Pastepatch()
-  let patch = split(@*, '\n')
-  let patch_tmpfile = '/tmp/pastepatch'
-  call writefile(patch, patch_tmpfile)
-  call system("patch -p0 < /tmp/pastepatch")
 endfunction
 
