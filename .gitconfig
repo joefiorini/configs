@@ -28,15 +28,7 @@
 [color]
   ui = auto
 [git-pair]
-  authors = Veezus Kreist <almighty@veez.us>
   authors = Joe Fiorini <joe@joefiorini.com>
   authors = Jonathan Penn <jonathan@navel-labs.com>
-  authors = Ivan Davydov <idavydov@sparkbase.com>
-  authors = Melissa Lewis <melissa.lewis@leandog.com>
-  authors = Kevin Day <kday@sparkbase.com>
-  authors = Zee Spencer <zee@zacharyspencer.com>
-	authors = Eric Hankinson <eric.hankinson@gmail.com>
-	authors = Isaac Sanders <isaacbfsanders@gmail.com>
-	authors = Jason M Felice <jason.m.felice@gmail.com>
 [core]
   excludesfile = /Users/joe/.gitignore
