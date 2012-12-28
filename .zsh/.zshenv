@@ -1,5 +1,6 @@
 source "$HOME/.aws-env"
 fpath=($HOME/.zsh/completions $HOME/.zsh $fpath)
+export SHELL="/usr/local/bin/zsh"
 export PATH="/Users/joe/.cabal/bin:./node_modules/.bin:/usr/local/bin:$PATH:$HOME/bin"
 export PAGER="less"
 export EDITOR="$HOME/Applications/MacVim.app/Contents/MacOS/Vim"
