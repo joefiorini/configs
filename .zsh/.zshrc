@@ -35,9 +35,11 @@ alias gignore="echo $1 >> .gitignore"
 alias g='git'
 alias mmv='noglob zmv -W'
 
-alias lsdiff='git show --oneline --name-only'
+alias scantiff='scanimage --format=tiff --mode=Color --resolution=600dpi'
+alias scanpreview='scanimage --format=tiff --mode=Color --resolution=600dpi --preview=yes --preview-speed=yes'
 
 alias ql='qlmanage -p 2>/dev/null'
+
 
 ###### Speed up tab completion
 zstyle ':completion:*' accept-exact '*(N)'
@@ -46,8 +48,8 @@ zstyle ':completion:*' cache-path ~/.zsh/cache
 
 ###### Functions
 
-cppatch() {
-  `git diff --no-prefix head^ $1 | pbcopy`
+add-host() {
+  echo $* | sudo tee -a /etc/hosts
 }
 
 pless() {
@@ -98,7 +100,7 @@ zle -N backward-kill-partial-word
 bindkey '^Xw' backward-kill-partial-word
 
 print_table () {
-  sed -n "/\"$1\".* do |t|$/,/end/ s/.*/&/ p" db/schema.rb
+  sed -n "/\"$1\".* do |t|$/,/end$/ s/.*/&/ p" db/schema.rb
 }
 
 gtd() {
@@ -151,11 +153,8 @@ local jobs="%(1j, %{$FG[160]%}%j%{$reset_color%},)"
 PROMPT='${smiley}${jobs} '
 RPROMPT='%{$FG[136]%}$(rbenv prompt)%{$reset_color%} ${vcs_info_msg_0_}'
 
-command_exists(){
-  command -v "$1" &>/dev/null ;
-}
-
 ###### hub
 command_exists hub && eval "$(hub alias -s zsh)"
-###### rbenv
-command_exists rbenv && eval "$(rbenv init -)"
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
