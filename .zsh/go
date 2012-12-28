@@ -11,16 +11,12 @@ go() {
 }
 
 go_projects_list() {
-  find -L ~/Projects -type d -d 2
+  ls -1d ~/Projects/*/*
 }
 
 goto_project() {
   local godir
-  if [ -d "$1/source" ]; then
-    godir="$1/source"
-  else
-    godir=$1
-  fi
+  godir=$1
   echo "cd $godir"
   builtin cd $godir
 }

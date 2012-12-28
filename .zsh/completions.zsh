@@ -1,6 +1,7 @@
 setopt auto_menu
 setopt complete_in_word # when completing, keep cursor inline
 setopt always_to_end    # move cursor to end of word if match inserted
+setopt no_case_glob     # case insensitive completions
 
 autoload -U compinit       # tab completion
 compinit -i
