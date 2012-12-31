@@ -49,7 +49,7 @@ set wildmenu                  "make tab completion act more like bash
 set wildmode=list:longest
 set completeopt=menu,longest
 
-set mouse-=a                  "disable mouse automatically entering visual mode
+set mouse=a                   "enable the mouse; I like being able to scroll
 
 set switchbuf=useopen         "don't reopen already opened buffers
 
