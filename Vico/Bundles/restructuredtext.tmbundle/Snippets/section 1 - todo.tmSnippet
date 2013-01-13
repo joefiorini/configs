@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>content</key>
+	<string>${1:subsection name}
+${1/(.)|\s/(?1:=:=)/g}
+
+.. TODO:
+  Flesh out ${1:subsection name} section
+$0</string>
+	<key>name</key>
+	<string>section 1 - with todo</string>
+	<key>scope</key>
+	<string>text.restructuredtext</string>
+	<key>tabTrigger</key>
+	<string>tsec</string>
+	<key>uuid</key>
+	<string>7B6D031A-FF9A-475A-8FD4-F8C099F96313</string>
+</dict>
+</plist>
