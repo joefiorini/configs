@@ -1,7 +1,6 @@
 source "$HOME/.aws-env"
 fpath=($HOME/.zsh/completions $HOME/.zsh $fpath)
-export SHELL="/usr/local/bin/zsh"
-export PATH="/Users/joe/.cabal/bin:./node_modules/.bin:/usr/local/bin:/usr/local/share/npm/bin:$PATH:$HOME/bin"
+export PATH="$HOME/.sm/bin:$HOME/.sm/pkg/active/bin:/Users/joe/.cabal/bin:./node_modules/.bin:/usr/local/bin:$PATH:$HOME/bin"
 export PAGER="less"
 export EDITOR="$HOME/Applications/MacVim.app/Contents/MacOS/Vim"
 export LS_COLORS='di=34:ln=35:so=32:pi=33:ex=31:bd=46;34:cd=43;34:su=41;30:sg=46;30:tw=42;30:ow=43;30'
@@ -22,3 +21,5 @@ command_exists(){
 
 ###### rbenv
 command_exists rbenv && eval "$(rbenv init -)"
+
+export PATH=".bundle/bin:$PATH" # Make sure bundler binstubs take precendence over rbenv shims
