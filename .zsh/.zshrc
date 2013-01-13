@@ -143,7 +143,7 @@ local smiley="%(?,%{$FG[064]%}⊕%{$reset_color%},%{$FG[160]%}⊗%{$reset_color%
 
 rbenv-prompt(){
   ruby_version=$(rbenv version-name)
-  [ -f $(pwd)/.rbenv-gemsets ] && ruby_version="$ruby_version@$(rbenv gemset active | cut -d' ' -f1)"
+  [ -f "$(pwd)/.rbenv-gemsets" ] && ruby_version="$ruby_version@$(rbenv gemset active | cut -d' ' -f1)"
   if [ ! $ruby_version = '' ]; then
     echo "$ruby_version"
   fi
