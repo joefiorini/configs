@@ -35,6 +35,8 @@ set cindent                   "recommended seting for automatic C-style indentat
 set autoindent                "automatic indentation in non-C files
 set wrap                      "wrap entire words, don't break them; much easier to read!
 
+set mouse=a                   "enable the mouse; I like being able to scroll
+
 set hidden                    "allow hiding buffers with unsaved changes
 
 set scrolloff=3               "add some breathing room at top and bottom of screen
@@ -48,8 +50,6 @@ end
 set wildmenu                  "make tab completion act more like bash
 set wildmode=list:longest
 set completeopt=menu,longest
-
-set mouse=a                   "enable the mouse; I like being able to scroll
 
 set switchbuf=useopen         "don't reopen already opened buffers
 
