@@ -315,3 +315,5 @@ function! s:align()
   endif
 endfunction
 
+" Add Handlebars support to Vim Commentary
+autocmd Syntax handlebars set commentstring={{!\ %s\ }}
