@@ -1,16 +1,19 @@
 [user]
-  name = Joe Fiorini
-  email = joe@joefiorini.com
+	name = Joe Fiorini
+	email = joe@joefiorini.com
 [github]
   token = 22b2f50b9ad4f484fd37c6f5eb51e695
-  user = joefiorini
+	user = joefiorini
+  password = !security 2>&1 >/dev/null find-generic-password -gs github.password | ruby -e 'print $1 if STDIN.gets =~ /^password: \"(.*)\"$/'
 [alias]
   st  = status
   ci  = commit -v
+  cm  = commit -vm
   br  = branch
   co  = checkout
   df  = diff
   lg  = log -p
+  ra  = log --format='%C(yellow)%h%Creset%Cgreen%d%Creset, %s %Cblue%ar by %an%Creset' --graph -15
   who = shortlog -s --
   rb  = rebase
   unstage = reset HEAD $1
@@ -30,5 +33,8 @@
 [git-pair]
   authors = Joe Fiorini <joe@joefiorini.com>
   authors = Jonathan Penn <jonathan@navel-labs.com>
+	authors = Josh Walsh <jwalsh@designinginteractive.com>
+	authors = Brad Dielman <bdielman@gmail.com>
+	authors = Kevin Solorio <kevin@detone8.com>
 [core]
   excludesfile = /Users/joe/.gitignore
