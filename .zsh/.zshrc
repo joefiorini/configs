@@ -91,6 +91,15 @@ tellme() {
   growlnotify -t "Command Complete" -s -m "$*"
 }
 
+git-url() {
+  code_opt=""
+  if [ "$2" -ne "" ]; then
+    code_opt="-F code=$2"
+  fi
+
+  `curl -i http://git.io -F "url=$1" $code_opt`
+}
+
 # make meta+bksp kill path components
 function backward-kill-partial-word {
         local WORDCHARS="${WORDCHARS//[\/.]/}"
