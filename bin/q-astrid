@@ -1,0 +1,55 @@
+#!/bin/bash
+
+set -e
+
+DEBUG=0
+
+create_token(){
+  params="${default_params}&email=${email}&secret=${password}&provider=password"
+  sig_params="user_signinapp_id${app_id}email${email}providerpasswordsecret${password}time${time_now}${secret}"
+  signature="$(md5 -qs $sig_params)"
+  params="${params}&sig=${signature}"
+  echo $(make_request user_signin "$params" | jq -r '.token')
+}
+
+create_task(){
+  sig_params="task_saveapp_id${app_id}time${time_now}title${1}token${token}${secret}"
+  debug "sig params: $sig_params"
+  signature=$(md5 -qs "$sig_params")
+  task_title=$(formescape "$task_title")
+  params="${default_params}&title=$task_title&token=${token}&sig=$signature"
+  echo $(make_request task_save "$params" | jq -r '.status')
+}
+
+make_request(){
+  method=$1
+  params="$2"
+  uri="https://astrid.com/api/7/$method"
+  debug "posting to $uri"
+  debug "with params: $params"
+  curl -d "$params" "$uri"
+}
+
+formescape(){
+  echo "$(ruby -ruri -e "puts URI.encode_www_form([\"$1\"])")"
+}
+
+debug(){
+  if [[ $DEBUG -eq 1 ]]; then
+    echo $* 1>&2
+  fi
+}
+
+secret="agz2n0zt9k"
+app_id="847e1jyj37"
+email="joe@joefiorini.com"
+password="gima-fa-ma"
+time_now="`date +%s`"
+default_params="app_id=$app_id&&time=$time_now"
+
+token=$(create_token)
+
+task_title="$*"
+
+create_task "$task_title"
+
