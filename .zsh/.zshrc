@@ -151,14 +151,6 @@ autoload -Uz vcs_info
 
 local smiley="%(?,%{$FG[064]%}⊕%{$reset_color%},%{$FG[160]%}⊗%{$reset_color%})"
 
-rbenv-prompt(){
-  ruby_version=$(rbenv version-name)
-  [ -f "$(pwd)/.rbenv-gemsets" ] && ruby_version="$ruby_version@$(rbenv gemset active | cut -d' ' -f1)"
-  if [ ! $ruby_version = '' ]; then
-    echo "$ruby_version"
-  fi
-}
-
 zstyle ':vcs_info:*' check-for-changes true
 zstyle ':vcs_info:*' stagedstr "%{$FG[037]%}+%{$reset_color%}"
 zstyle ':vcs_info:*' unstagedstr "%{$FG[160]%}!%{$reset_color%}"
@@ -169,8 +161,7 @@ precmd () { vcs_info }
 
 local jobs="%(1j, %{$FG[160]%}%j%{$reset_color%},)"
 PROMPT='${smiley}${jobs} '
-
-RPROMPT='%{$FG[136]%}$(rbenv-prompt)%{$reset_color%} ${vcs_info_msg_0_}'
+RPROMPT='%{$FG[136]%}$(rbenv prompt)%{$reset_color%} ${vcs_info_msg_0_}'
 
 ###### hub
 command_exists hub && eval "$(hub alias -s zsh)"
