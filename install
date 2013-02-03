@@ -15,6 +15,7 @@ lndir -silent $configs_dir $HOME
 rm $HOME/install  # Don't want install script hanging around
 rm -rf $HOME/TextMate
 rm -rf $HOME/Terminal.app
+rm -rf $HOME/Alfred\ Extensions
 rm -rf $HOME/.git     # Don't need the git repo in $HOME
 
 homedir_files=".vim/.vimrc .zsh/.zshrc .zsh/.zshenv"
