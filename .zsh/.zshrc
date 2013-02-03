@@ -34,6 +34,7 @@ alias cpkey="cat ~/.ssh/id_rsa.pub | pbcopy"
 alias gignore="echo $1 >> .gitignore"
 alias g='git'
 alias mmv='noglob zmv -W'
+alias nw="/Applications/node-webkit.app/Contents/MacOS/node-webkit"
 
 alias scantiff='scanimage --format=tiff --mode=Color --resolution=600dpi'
 alias scanpreview='scanimage --format=tiff --mode=Color --resolution=600dpi --preview=yes --preview-speed=yes'
