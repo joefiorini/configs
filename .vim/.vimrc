@@ -171,23 +171,14 @@ set noswapfile
 "   Key Mappings      |
 "----------------------
 
-" change from <Leader>t to <Leader>]
-map <Leader>m <Plug>MakeGreen
-
 " Make Y consistent with C and D
 nnoremap Y y$
-
-" Reparse CTags
-map <Leader>rt :!ctags --extra=+f -R *<CR><CR>
 
 " Make <c-l> clear the highlight as well as redraw
 nnoremap <C-L> :nohls<CR><C-L>
 
 " Make <c-l> print the path to file being edited in ex mode
 cmap <c-l> <c-r>=expand("%")<CR>
-
-" Map Q to something useful
-noremap Q gq
 
 " <C-c> in insert mode doesn't fire insertleave, which is a problem in <C-v>
 "   mode; this makes <C-c> fire insertleave
@@ -196,25 +187,8 @@ inoremap <C-c> <ESC>
 " Rerun the last command
 nnoremap <Leader>. :<Up><CR>
 
-nnoremap <Leader>ga :!git add %<CR>
-
-" Make tabs work like we're used to
-map <C-Tab> :tabnext<CR>
-map <C-S-Tab> :tabprev<CR>
-
-" Search with ctrl+f
-map <C-F> :grep "" <LEFT><LEFT>
-
 " Make omnicomplete a bit easier
 imap <Leader>o <C-x><C-o>
-
-" Show NERD_Tree with line numbers for easier navigation
-map <Leader>d :Bclose<CR>
-
-" Shortcuts to some commonly used apps
-map <Leader>r :!rvm-auto-ruby -rubygems %<CR>
-map <Leader>rs :!rspactor<CR>
-map <Leader>gx :!gitx<CR>
 
 " Buffer navigation
 map <Leader><Leader> <C-^>
@@ -226,12 +200,6 @@ map <Leader>ls :buffers<CR>
 cmap Q<CR> q
 
 cmap <C-T> <C-B>map <Leader>t :<C-E><lt>CR>
-" Make windows a little easier to resize
-nnoremap <Leader>= <C-W>+
-nnoremap <Leader>- <C-W>-
-nnoremap <Leader>_ <C-W>_
-nnoremap ++ <C-W>>
-nnoremap -- <C-W><
 
 " For unimpaired plugin
 nmap <C-j> ]e
@@ -242,9 +210,6 @@ vmap <C-k> [egv
 " For allml plugin
 inoremap <M-o> <Esc>o
 let g:allml_global_maps = 1
-
-" Insert []
-imap <C-]> <C-s>]
 
 " Quickly open/source .vimrc/.gvimrc
 nmap ,vs :source $HOME/.vimrc<cr>
@@ -267,16 +232,6 @@ endfun
 
 " and map it to <Leader>c
 nmap <Leader>c :call ClearAllTrailingSpaces()<CR>
-
-function! ToggleScratch()
-  if expand('%') == g:ScratchBufferName
-    quit
-  else
-    Sscratch
-  endif
-endfunction
-
-map <Leader>s :call ToggleScratch()<CR>
 
 function! ScrubQuotes()
   %s/“/"/g
