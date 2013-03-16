@@ -14,6 +14,7 @@ export TASKS_FILE=~/Dropbox/clocktower/taskpaper.taskpaper
 # (see http://blog.headius.com/2010/03/jruby-startup-time-tips.html)
 export JAVA_OPTS="-d32"
 export JRUBY_OPTS="-X-C --1.9" # Turning off JIT compiling also helps speed up load times
+export ANDROID_SDK_ROOT=/usr/local/opt/android-sdk
 
 command_exists(){
   command -v "$1" &>/dev/null ;
