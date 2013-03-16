@@ -125,9 +125,7 @@ augroup RubyOpts
 
 augroup END
 
-
-
-"au BufRead,BufNewFile *.screenplay set filetype=screenplay
+autocmd vimenter * if !argc() | NERDTree | endif
 
 "custom status line (across the bottom of the screen)
 " See http://vimdoc.sourceforge.net/htmldoc/options.html#'statusline' for more
