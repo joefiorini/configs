@@ -137,6 +137,8 @@ let g:user_zen_settings = {
 \  'indentation' : '  ',
 \}
 
+let g:gist_clip_command = 'pbcopy'
+
 set grepprg=ack
 function! Ack(args)
     let grepprg_bak=&grepprg
