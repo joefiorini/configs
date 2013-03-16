@@ -61,6 +61,10 @@ vim() {
   $EDITOR $*
 }
 
+cdvim(){
+  (cd $1 && vim .)
+}
+
 reload() {
   source ~/.zshenv
   source ~/.zshrc
