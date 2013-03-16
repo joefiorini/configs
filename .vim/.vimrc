@@ -83,14 +83,15 @@ filetype plugin indent on     "enable automatic filetype detection, filetype-spe
 
 augroup FTCheck
 
-  au Bufenter *.m setfiletype objc
-  au Bufenter *.h setfiletype objc
-  au Bufenter *.pch setfiletype objc
-  au Bufenter *.clj setfiletype clojure
-  au Bufenter *.plates setfiletype html
-  au BufNewFile,BufRead *.liquid   setf liquid
+  au Bufenter *.m                   setfiletype objc
+  au Bufenter *.h                   setfiletype objc
+  au Bufenter *.pch                 setfiletype objc
+  au Bufenter *.clj                 setfiletype clojure
+  au Bufenter *.plates              setfiletype html
+  au Bufenter *.md                  setfiletype markdown
+  au BufNewFile,BufRead *.liquid    setfiletype liquid
   " Thorfile, Rakefile and Gemfile are Ruby
-  au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,config.ru}    set ft=ruby
+  au BufRead,BufNewFile {Gemfile,Rakefile,Thorfile,Assetfile,config.ru}    set ft=ruby
 
 augroup END
 
